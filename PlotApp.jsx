@@ -1,0 +1,592 @@
+import { useState } from "react";
+
+const C = {
+  bg: "#FAF8F3", card: "#FFFFFF", coral: "#FF6845", coralLight: "#FFF0EB",
+  purple: "#7B5CF6", purpleLight: "#F0EEFF", purpleMid: "#A78BFA",
+  blue: "#4A8CF5", blueLight: "#EEF4FF", gold: "#F59E0B",
+  green: "#22C55E", greenLight: "#DCFCE7",
+  text: "#1C1917", muted: "#9A9590", border: "#EEEAD4", navBg: "#FFFFFF",
+};
+
+const events = [
+  { id:1, name:"Rooftop Brunch & Beats", time:"Today · 11:00 AM", distance:"0.4 mi", match:92, going:4, friends:3, tags:["Brunch","Music","Great crowd"], gradient:"linear-gradient(145deg,#FF9A72,#FF6845,#E8445A)" },
+  { id:2, name:"Sunset Beach Jam", time:"Today · 6:30 PM", distance:"1.2 mi", match:87, going:6, friends:3, tags:["Live Music","Beach","Chill Vibes"], gradient:"linear-gradient(145deg,#FFD54F,#FF8A00,#FF5722)" },
+  { id:3, name:"Garden Dinner Party", time:"Today · 7:00 PM", distance:"0.5 mi", match:92, going:5, friends:2, tags:["Dinner","Social","Outdoor"], gradient:"linear-gradient(145deg,#81C784,#388E3C,#1B5E20)" },
+  { id:4, name:"Wine & Paint Evening", time:"Tonight · 8:00 PM", distance:"0.6 mi", match:85, going:8, friends:1, tags:["Art","Wine","Creative"], gradient:"linear-gradient(145deg,#CE93D8,#9C27B0,#6A1B9A)" },
+];
+
+const Av = ({ name, size=32 }) => {
+  const h = (name.charCodeAt(0)*53 + name.charCodeAt(1||0)*17) % 360;
+  return (
+    <div style={{ width:size, height:size, borderRadius:"50%", background:`hsl(${h},60%,82%)`, color:`hsl(${h},60%,32%)`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:size*0.38, fontWeight:700, flexShrink:0, border:"2px solid white", letterSpacing:-0.5 }}>
+      {name.split(" ").map(n=>n[0]).join("").slice(0,2).toUpperCase()}
+    </div>
+  );
+};
+
+const Pill = ({ label, bg=C.purpleLight, color=C.purple }) => (
+  <span style={{ fontSize:11, fontWeight:600, background:bg, color, borderRadius:20, padding:"3px 10px", flexShrink:0 }}>{label}</span>
+);
+
+const MatchBadge = ({ score }) => (
+  <div style={{ display:"inline-flex", alignItems:"center", gap:4, background:"rgba(255,255,255,0.92)", borderRadius:20, padding:"4px 10px", fontSize:12, fontWeight:700, color:C.coral }}>
+    🔥 {score}% match
+  </div>
+);
+
+const NavIcon = ({ type, active }) => {
+  const col = active ? C.purple : C.muted;
+  const sw = active ? 2.2 : 1.8;
+  const icons = {
+    discover: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={col} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88" fill={active?col:"none"} strokeWidth="1.5"/></svg>,
+    map: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={col} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round"><path d="M3 7l6-2 6 2 6-2v14l-6 2-6-2-6 2V7z"/><path d="M9 5v14M15 7v14" strokeWidth="1.2"/></svg>,
+    aura: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={col} strokeWidth={sw} strokeLinecap="round"><path d="M12 2l1.9 5.8H20l-4.9 3.6 1.9 5.8L12 14l-4.9 3.2 1.9-5.8L4 7.8h6.1z"/></svg>,
+    pulse: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={col} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round"><polyline points="2,12 6,12 9,5 13,19 16,12 20,12 22,12"/></svg>,
+    you: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={col} strokeWidth={sw} strokeLinecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-3.5 3.6-6 8-6s8 2.5 8 6"/></svg>,
+  };
+  return icons[type];
+};
+
+function DiscoverScreen({ onEvent, userName }) {
+  const [filter, setFilter] = useState("All");
+  return (
+    <div style={{ height:"100%", overflowY:"auto", background:C.bg, paddingBottom:12 }}>
+      <div style={{ padding:"12px 20px 0", position:"sticky", top:0, background:C.bg, zIndex:10 }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:8 }}>
+          <div>
+            <div style={{ fontSize:13, color:C.muted }}>Good morning,</div>
+            <div style={{ fontSize:24, fontWeight:800, color:C.text, letterSpacing:-0.8, lineHeight:1.15 }}>{userName || "Likhith"} 👋</div>
+          </div>
+          <Av name={userName || "Likhith Kumar"} size={42} />
+        </div>
+        <div style={{ display:"inline-flex", alignItems:"center", gap:5, background:C.purpleLight, borderRadius:20, padding:"5px 12px", marginBottom:14, fontSize:12, fontWeight:700, color:C.purple }}>✦ Chill Explorer</div>
+        <div style={{ display:"flex", gap:8, overflowX:"auto", paddingBottom:14, scrollbarWidth:"none" }}>
+          {["All","Day","Night","Food","Music"].map(f=>(
+            <button key={f} onClick={()=>setFilter(f)} style={{ flexShrink:0, padding:"7px 16px", borderRadius:20, border:filter===f?"none":`1px solid ${C.border}`, background:filter===f?C.text:"white", color:filter===f?"white":C.text, fontSize:13, fontWeight:600, cursor:"pointer" }}>{f}</button>
+          ))}
+        </div>
+      </div>
+      <div style={{ padding:"0 20px" }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
+          <span style={{ fontSize:16, fontWeight:700, color:C.text }}>Top Picks For You</span>
+          <span style={{ fontSize:13, color:C.purple, fontWeight:600 }}>See all</span>
+        </div>
+        {events.slice(0,2).map(ev=>(
+          <div key={ev.id} onClick={()=>onEvent(ev)} style={{ background:C.card, borderRadius:22, overflow:"hidden", marginBottom:16, cursor:"pointer", boxShadow:"0 3px 14px rgba(0,0,0,0.07)", border:`1px solid ${C.border}` }}>
+            <div style={{ position:"relative", height:155, background:ev.gradient }}>
+              <div style={{ position:"absolute", top:10, left:10 }}><MatchBadge score={ev.match}/></div>
+              <button onClick={e=>{e.stopPropagation();}} style={{ position:"absolute", top:10, right:10, width:34, height:34, borderRadius:"50%", background:"rgba(255,255,255,0.88)", border:"none", cursor:"pointer", fontSize:15, display:"flex", alignItems:"center", justifyContent:"center" }}>🔖</button>
+            </div>
+            <div style={{ padding:"14px 16px 16px" }}>
+              <div style={{ fontSize:17, fontWeight:700, color:C.text, marginBottom:3 }}>{ev.name}</div>
+              <div style={{ fontSize:12, color:C.muted, marginBottom:10 }}>{ev.time} · {ev.distance}</div>
+              <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:10 }}>
+                <div style={{ display:"flex", alignItems:"center", gap:6 }}>
+                  <div style={{ display:"flex" }}>{["A","B","C"].map((l,i)=><Av key={i} name={`${l} Person`} size={24}/>)}</div>
+                  <span style={{ fontSize:11, color:C.muted }}>{ev.friends} friends of friends</span>
+                </div>
+                <span style={{ fontSize:11, color:C.muted }}>{ev.going} going</span>
+              </div>
+              <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>{ev.tags.map(t=><Pill key={t} label={t}/>)}</div>
+            </div>
+          </div>
+        ))}
+        <div style={{ background:C.card, borderRadius:22, padding:"14px 16px", border:`1px solid ${C.border}`, marginBottom:16, display:"flex", alignItems:"center", gap:12 }}>
+          <div style={{ width:54, height:54, borderRadius:14, background:"linear-gradient(135deg,#FFD700,#FFA500)", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", fontSize:24 }}>⚡</div>
+          <div>
+            <div style={{ fontSize:11, color:C.gold, fontWeight:700, marginBottom:2 }}>Suggested Spot · Sponsored</div>
+            <div style={{ fontSize:15, fontWeight:700, color:C.text }}>Trending with people like you</div>
+            <div style={{ fontSize:12, color:C.muted, marginTop:2 }}>3 Aura matches going tonight</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MapScreen() {
+  const [mode, setMode] = useState("Solo");
+  return (
+    <div style={{ height:"100%", display:"flex", flexDirection:"column", background:C.bg }}>
+      <div style={{ padding:"12px 20px 8px", display:"flex", alignItems:"center", gap:10, zIndex:10 }}>
+        <button style={{ background:"none", border:"none", fontSize:20, cursor:"pointer", color:C.text }}>←</button>
+        <div style={{ display:"flex", background:"#E8E4DC", borderRadius:22, padding:3, gap:2 }}>
+          {["Solo","Squad"].map(m=>(
+            <button key={m} onClick={()=>setMode(m)} style={{ padding:"7px 22px", borderRadius:18, border:"none", cursor:"pointer", background:mode===m?C.card:"transparent", color:mode===m?C.purple:C.muted, fontWeight:mode===m?700:500, fontSize:14, boxShadow:mode===m?"0 1px 4px rgba(0,0,0,0.12)":"none", transition:"all 0.2s" }}>{m}</button>
+          ))}
+        </div>
+        <button style={{ marginLeft:"auto", width:36, height:36, borderRadius:"50%", background:C.card, border:`1px solid ${C.border}`, cursor:"pointer", fontSize:16, display:"flex", alignItems:"center", justifyContent:"center" }}>⚙️</button>
+      </div>
+      <div style={{ flex:1, position:"relative", overflow:"hidden" }}>
+        <svg width="100%" height="100%" viewBox="0 0 390 520" style={{ position:"absolute", inset:0 }} preserveAspectRatio="xMidYMid slice">
+          <rect width="390" height="520" fill="#EAE5DA"/>
+          {[55,110,170,230,290,350,410].map(y=><rect key={`h${y}`} x="0" y={y-4} width="390" height="8" fill="#D8D2C6"/>)}
+          {[40,90,145,200,255,310,365].map(x=><rect key={`v${x}`} x={x-4} y="0" width="8" height="520" fill="#D8D2C6"/>)}
+          <rect x="0" y="186" width="390" height="16" fill="#C9C3B6"/>
+          <rect x="116" y="0" width="18" height="520" fill="#C9C3B6"/>
+          <rect x="60" y="60" width="50" height="45" rx="4" fill="#CCC8C0"/>
+          <rect x="125" y="60" width="70" height="45" rx="4" fill="#CCC8C0"/>
+          <rect x="205" y="60" width="50" height="45" rx="4" fill="#CCC8C0"/>
+          <rect x="60" y="116" width="50" height="60" rx="4" fill="#C8C4BC"/>
+          <rect x="145" y="210" width="55" height="70" rx="4" fill="#CCC8C0"/>
+          <rect x="215" y="210" width="70" height="70" rx="4" fill="#C8C4BC"/>
+          <rect x="60" y="300" width="50" height="55" rx="4" fill="#CCC8C0"/>
+          <rect x="125" y="300" width="80" height="55" rx="4" fill="#C8C4BC"/>
+          <rect x="220" y="300" width="60" height="55" rx="4" fill="#CCC8C0"/>
+          <defs>
+            <radialGradient id="h1" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#7B5CF6" stopOpacity="0.4"/><stop offset="100%" stopColor="#7B5CF6" stopOpacity="0"/></radialGradient>
+            <radialGradient id="h2" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#FF6845" stopOpacity="0.35"/><stop offset="100%" stopColor="#FF6845" stopOpacity="0"/></radialGradient>
+            <radialGradient id="h3" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#4A8CF5" stopOpacity="0.3"/><stop offset="100%" stopColor="#4A8CF5" stopOpacity="0"/></radialGradient>
+          </defs>
+          <ellipse cx="190" cy="240" rx="110" ry="90" fill="url(#h1)"/>
+          <ellipse cx="290" cy="140" rx="75" ry="65" fill="url(#h2)"/>
+          <ellipse cx="80" cy="360" rx="80" ry="65" fill="url(#h3)"/>
+          <g transform="translate(165,218)">
+            <circle cx="0" cy="0" r="22" fill="white" opacity="0.95"/>
+            <text x="0" y="6" textAnchor="middle" fontSize="16">🎵</text>
+          </g>
+          <g transform="translate(275,128)">
+            <circle cx="0" cy="0" r="20" fill={C.coral} opacity="0.95"/>
+            <text x="0" y="6" textAnchor="middle" fontSize="14">🍷</text>
+          </g>
+          <g transform="translate(75,345)">
+            <circle cx="0" cy="0" r="20" fill={C.purple} opacity="0.95"/>
+            <text x="0" y="6" textAnchor="middle" fontSize="14">🎨</text>
+          </g>
+          <g transform="translate(230,300)">
+            <circle cx="0" cy="0" r="18" fill={C.blue} opacity="0.95"/>
+            <text x="0" y="5" textAnchor="middle" fontSize="13">🌱</text>
+          </g>
+          <circle cx="205" cy="290" r="12" fill={C.blue} opacity="0.9"/>
+          <circle cx="205" cy="290" r="7" fill="white"/>
+          <circle cx="205" cy="290" r="26" fill={C.blue} opacity="0.12"/>
+        </svg>
+        <button style={{ position:"absolute", bottom:140, right:16, width:40, height:40, borderRadius:"50%", background:"white", border:`1px solid ${C.border}`, cursor:"pointer", fontSize:18, display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 2px 8px rgba(0,0,0,0.12)" }}>🎯</button>
+        <div style={{ position:"absolute", bottom:0, left:0, right:0, background:C.card, borderRadius:"24px 24px 0 0", padding:"16px 20px 12px", boxShadow:"0 -4px 20px rgba(0,0,0,0.09)" }}>
+          <div style={{ display:"flex", gap:12, alignItems:"center" }}>
+            <div style={{ width:58, height:58, borderRadius:14, background:"linear-gradient(135deg,#CE93D8,#9C27B0)", flexShrink:0 }}/>
+            <div style={{ flex:1 }}>
+              <div style={{ fontSize:11, color:C.coral, fontWeight:700, marginBottom:2 }}>🔥 85% match</div>
+              <div style={{ fontSize:16, fontWeight:700, color:C.text }}>Wine &amp; Paint</div>
+              <div style={{ fontSize:12, color:C.muted }}>0.6 mi · 3 going tonight</div>
+            </div>
+            <div style={{ display:"flex" }}>{["R","S","T"].map((l,i)=><Av key={i} name={`${l} Person`} size={30}/>)}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AuraScreen({ energy, setEnergy, intent, setIntent, mode, setMode, onFind, loading, results }) {
+  const orbHue = Math.round(250 - energy * 1.9);
+  const orbSat = 75 + energy * 0.15;
+  return (
+    <div style={{ height:"100%", overflowY:"auto", background:`linear-gradient(180deg, #EDE6FE 0%, ${C.bg} 55%)` }}>
+      <div style={{ padding:"16px 24px 24px" }}>
+        <div style={{ textAlign:"center", marginBottom:2 }}>
+          <div style={{ fontSize:22, fontWeight:800, color:C.text, letterSpacing:-0.5 }}>Set your vibe</div>
+          <div style={{ fontSize:14, color:C.muted, marginTop:4 }}>We'll find your people</div>
+        </div>
+        <div style={{ display:"flex", justifyContent:"center", margin:"22px 0 24px" }}>
+          <div style={{ width:160, height:160, borderRadius:"50%", background:`radial-gradient(circle at 38% 33%, hsl(${orbHue+50},100%,88%) 0%, hsl(${orbHue},${orbSat}%,65%) 45%, hsl(${orbHue-50},80%,42%) 100%)`, boxShadow:`0 20px 60px hsl(${orbHue},70%,60%,0.45)`, transition:"all 0.35s ease" }}/>
+        </div>
+        <div style={{ marginBottom:26 }}>
+          <div style={{ fontSize:14, fontWeight:700, color:C.text, marginBottom:12 }}>Energy</div>
+          <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+            <span style={{ fontSize:22 }}>😌</span>
+            <div style={{ flex:1, position:"relative", height:28, display:"flex", alignItems:"center" }}>
+              <div style={{ position:"absolute", left:0, right:0, height:6, borderRadius:3, background:`linear-gradient(to right, ${C.purple}, ${C.coral})` }}/>
+              <input type="range" min="0" max="100" value={energy} onChange={e=>setEnergy(+e.target.value)} style={{ position:"absolute", inset:0, width:"100%", opacity:0, cursor:"pointer", height:"100%", margin:0 }}/>
+              <div style={{ position:"absolute", top:"50%", transform:`translate(-50%,-50%)`, left:`${energy}%`, width:22, height:22, borderRadius:"50%", background:"white", boxShadow:"0 2px 8px rgba(0,0,0,0.2)", border:`2.5px solid ${C.purple}`, pointerEvents:"none", transition:"left 0.06s" }}/>
+            </div>
+            <span style={{ fontSize:22 }}>🔥</span>
+          </div>
+        </div>
+        <div style={{ marginBottom:24 }}>
+          <div style={{ fontSize:14, fontWeight:700, color:C.text, marginBottom:10 }}>Intent</div>
+          <div style={{ display:"flex", gap:8, flexWrap:"wrap" }}>
+            {["Chill","Explore","Meet","Deep Talk"].map(i=>(
+              <button key={i} onClick={()=>setIntent(i)} style={{ padding:"9px 18px", borderRadius:22, border:intent===i?"none":`1px solid ${C.border}`, background:intent===i?C.purple:"white", color:intent===i?"white":C.text, fontWeight:intent===i?700:500, fontSize:14, cursor:"pointer", transition:"all 0.15s" }}>{i}</button>
+            ))}
+          </div>
+        </div>
+        <div style={{ marginBottom:30 }}>
+          <div style={{ fontSize:14, fontWeight:700, color:C.text, marginBottom:10 }}>Social Mode</div>
+          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10 }}>
+            {[{id:"Solo",icon:"👤"},{id:"Open",icon:"👥"},{id:"Group",icon:"🎉"}].map(m=>(
+              <button key={m.id} onClick={()=>setMode(m.id)} style={{ padding:"14px 8px", borderRadius:18, border:mode===m.id?`2px solid ${C.purple}`:`1px solid ${C.border}`, background:mode===m.id?C.purpleLight:"white", display:"flex", flexDirection:"column", alignItems:"center", gap:6, cursor:"pointer" }}>
+                <span style={{ fontSize:24 }}>{m.icon}</span>
+                <span style={{ fontSize:13, fontWeight:mode===m.id?700:500, color:mode===m.id?C.purple:C.text }}>{m.id}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+        <button onClick={onFind} disabled={loading} style={{ width:"100%", padding:"17px", borderRadius:30, background:loading?"#C4B8F8":`linear-gradient(135deg, ${C.purple} 0%, ${C.coral} 100%)`, color:"white", fontWeight:800, fontSize:17, border:"none", cursor:loading?"not-allowed":"pointer", letterSpacing:0.2, marginBottom:24 }}>
+          {loading ? "✨ Finding your people..." : "Find my people ✨"}
+        </button>
+        {results && (
+          <div>
+            <div style={{ fontSize:16, fontWeight:700, color:C.text, marginBottom:14 }}>AI Picks for You ✦</div>
+            {results.map((ev,i)=>(
+              <div key={i} style={{ background:C.card, borderRadius:20, padding:"16px", marginBottom:12, border:`1px solid ${C.border}`, boxShadow:"0 2px 10px rgba(0,0,0,0.05)" }}>
+                <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", gap:8, marginBottom:8 }}>
+                  <div style={{ fontSize:16, fontWeight:700, color:C.text, flex:1 }}>{ev.name}</div>
+                  <MatchBadge score={ev.matchScore||ev.match||90}/>
+                </div>
+                <div style={{ fontSize:12, color:C.muted, marginBottom:8 }}>{ev.time} · {ev.distance}</div>
+                <div style={{ fontSize:13, color:C.muted, fontStyle:"italic", marginBottom:10, lineHeight:1.5 }}>"{ev.reason}"</div>
+                <div style={{ display:"flex", gap:6 }}>
+                  <Pill label={ev.vibe}/>
+                  <Pill label={`${ev.going} going`} bg={C.blueLight} color={C.blue}/>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function EventDetail({ event, onBack }) {
+  return (
+    <div style={{ height:"100%", overflowY:"auto", background:C.bg }}>
+      <div style={{ position:"relative", height:230, background:event.gradient, flexShrink:0 }}>
+        <button onClick={onBack} style={{ position:"absolute", top:14, left:14, width:36, height:36, borderRadius:"50%", background:"rgba(255,255,255,0.9)", border:"none", cursor:"pointer", fontSize:18, display:"flex", alignItems:"center", justifyContent:"center" }}>←</button>
+        <div style={{ position:"absolute", top:14, right:14, display:"flex", gap:8 }}>
+          {["❤️","↗️"].map((ic,i)=><button key={i} style={{ width:36, height:36, borderRadius:"50%", background:"rgba(255,255,255,0.9)", border:"none", cursor:"pointer", fontSize:16, display:"flex", alignItems:"center", justifyContent:"center" }}>{ic}</button>)}
+        </div>
+        <div style={{ position:"absolute", bottom:14, left:14 }}><MatchBadge score={event.match||92}/></div>
+      </div>
+      <div style={{ padding:"20px" }}>
+        <div style={{ fontSize:26, fontWeight:800, color:C.text, letterSpacing:-0.8, marginBottom:6, lineHeight:1.2 }}>{event.name}</div>
+        <div style={{ fontSize:13, color:C.muted, marginBottom:14 }}>{event.time} · {event.distance}</div>
+        <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:20 }}>{(event.tags||["Social","Outdoor"]).map(t=><Pill key={t} label={t}/>)}</div>
+        <div style={{ background:C.card, borderRadius:20, padding:"16px", marginBottom:14, border:`1px solid ${C.border}` }}>
+          <div style={{ fontSize:14, fontWeight:700, color:C.text, marginBottom:12 }}>Squad ({event.going||5} going)</div>
+          <div style={{ display:"flex", gap:4 }}>
+            {["Maya","Alex","Jordan","Sam","Casey"].map((n,i)=><Av key={i} name={n} size={36}/>)}
+            <div style={{ width:36, height:36, borderRadius:"50%", background:C.purpleLight, border:"2px solid white", display:"flex", alignItems:"center", justifyContent:"center", fontSize:11, fontWeight:700, color:C.purple }}>+2</div>
+          </div>
+        </div>
+        <div style={{ background:C.greenLight, borderRadius:20, padding:"16px", marginBottom:14, border:"1px solid #86EFAC" }}>
+          <div style={{ fontSize:13, fontWeight:700, color:"#15803D", marginBottom:10 }}>Why this is a great match</div>
+          {["You both like social, low pressure vibes","Similar energy levels","Group size fits your preference"].map((r,i)=>(
+            <div key={i} style={{ display:"flex", gap:8, alignItems:"flex-start", marginBottom:7 }}>
+              <span style={{ color:C.green, fontWeight:700, fontSize:14 }}>✓</span>
+              <span style={{ fontSize:13, color:"#166534", lineHeight:1.4 }}>{r}</span>
+            </div>
+          ))}
+        </div>
+        <div style={{ background:C.card, borderRadius:20, padding:"16px", marginBottom:24, border:`1px solid ${C.border}` }}>
+          <div style={{ fontSize:14, fontWeight:700, color:C.text, marginBottom:12 }}>Chat preview</div>
+          {[{n:"Maya",m:"Can't wait! The weather looks perfect 🌤️",t:"2m ago"},{n:"Alex",m:"Anyone coming from nearby?",t:"3m ago"}].map((msg,i)=>(
+            <div key={i} style={{ display:"flex", gap:10, marginBottom:12 }}>
+              <Av name={msg.n} size={32}/>
+              <div>
+                <div style={{ fontSize:12, fontWeight:600, color:C.text }}>{msg.n} <span style={{ color:C.muted, fontWeight:400 }}>{msg.t}</span></div>
+                <div style={{ fontSize:13, color:C.text, marginTop:2, lineHeight:1.4 }}>{msg.m}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <button style={{ width:"100%", padding:"17px", borderRadius:30, background:`linear-gradient(135deg, ${C.purple}, ${C.blue})`, color:"white", fontWeight:800, fontSize:17, border:"none", cursor:"pointer" }}>Join Squad 👥</button>
+      </div>
+    </div>
+  );
+}
+
+function PulseScreen() {
+  const sigs = [
+    { icon:"🔥", color:C.coral, bg:"#FFF0EB", title:"New Match Signal", sub:"You + 3 others have a high match tonight", type:"Match" },
+    { icon:"⚡", color:C.gold, bg:"#FFF9EB", title:"Hotspot Alert", sub:"Downtown is heating up · Right now", type:"Alert" },
+    { icon:"👥", color:C.purple, bg:C.purpleLight, title:"Squad Forming", sub:"A squad with 91% match is forming near you", type:"Squad" },
+    { icon:"💬", color:C.blue, bg:C.blueLight, title:"Warmup Response", sub:'Maya answered: "Best part of a perfect day?"', type:"Chat" },
+  ];
+  return (
+    <div style={{ height:"100%", overflowY:"auto", background:C.bg, paddingBottom:12 }}>
+      <div style={{ padding:"14px 20px" }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:18 }}>
+          <div style={{ fontSize:24, fontWeight:800, color:C.text, letterSpacing:-0.5 }}>Pulse</div>
+          <button style={{ background:"none", border:`1px solid ${C.border}`, borderRadius:20, padding:"6px 14px", fontSize:13, cursor:"pointer", color:C.text }}>⚙️ Filter</button>
+        </div>
+        <div style={{ fontSize:11, fontWeight:700, color:C.muted, letterSpacing:1.2, marginBottom:12, textTransform:"uppercase" }}>Live signals for you</div>
+        {sigs.map((s,i)=>(
+          <div key={i} style={{ background:C.card, borderRadius:20, padding:"16px", marginBottom:12, border:`1px solid ${C.border}`, display:"flex", gap:14, alignItems:"flex-start", cursor:"pointer" }}>
+            <div style={{ width:46, height:46, borderRadius:14, background:s.bg, display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, flexShrink:0 }}>{s.icon}</div>
+            <div style={{ flex:1 }}>
+              <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:4 }}>
+                <div style={{ fontSize:14, fontWeight:700, color:C.text }}>{s.title}</div>
+                <span style={{ fontSize:10, background:s.bg, color:s.color, borderRadius:20, padding:"2px 8px", fontWeight:700 }}>{s.type}</span>
+              </div>
+              <div style={{ fontSize:12, color:C.muted, marginBottom:10, lineHeight:1.45 }}>{s.sub}</div>
+              <div style={{ display:"flex", gap:8 }}>
+                {["Answer","Skip"].map((l,j)=>(
+                  <button key={j} style={{ padding:"6px 16px", borderRadius:20, border:j===1?`1px solid ${C.border}`:"none", background:j===0?C.purple:"transparent", color:j===0?"white":C.muted, fontWeight:600, fontSize:12, cursor:"pointer" }}>{l}</button>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14, marginTop:4 }}>
+          <span style={{ fontSize:15, fontWeight:700, color:C.text }}>Warmups</span>
+          <span style={{ fontSize:13, color:C.purple, fontWeight:600 }}>See all</span>
+        </div>
+        {["Maya","Jordan"].map((name,i)=>(
+          <div key={i} style={{ background:C.card, borderRadius:20, padding:"14px 16px", marginBottom:10, border:`1px solid ${C.border}`, display:"flex", alignItems:"center", gap:12, cursor:"pointer" }}>
+            <Av name={name} size={42}/>
+            <div style={{ flex:1 }}>
+              <div style={{ fontSize:13, fontWeight:600, color:C.text }}>You and {name} both chose</div>
+              <div style={{ fontSize:12, color:C.muted, marginTop:2 }}>"creative people &amp; good food"</div>
+              <div style={{ fontSize:11, color:C.purple, marginTop:4, fontWeight:600 }}>What's a hidden gem you love here?</div>
+            </div>
+            <span style={{ fontSize:18, color:C.muted }}>→</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ProfileScreen() {
+  return (
+    <div style={{ height:"100%", overflowY:"auto", background:C.bg, paddingBottom:12 }}>
+      <div style={{ padding:"14px 20px" }}>
+        <div style={{ display:"flex", justifyContent:"flex-end", marginBottom:16 }}>
+          <button style={{ background:"none", border:"none", fontSize:20, cursor:"pointer" }}>⚙️</button>
+        </div>
+        <div style={{ display:"flex", flexDirection:"column", alignItems:"center", marginBottom:24 }}>
+          <div style={{ position:"relative", marginBottom:12 }}>
+            <div style={{ width:88, height:88, borderRadius:"50%", background:`linear-gradient(135deg, ${C.purpleMid}, ${C.purple}, ${C.blue})`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:34, color:"white", fontWeight:800 }}>L</div>
+            <button style={{ position:"absolute", bottom:0, right:0, width:28, height:28, borderRadius:"50%", background:C.purple, border:"2px solid white", fontSize:12, cursor:"pointer", color:"white", display:"flex", alignItems:"center", justifyContent:"center" }}>✎</button>
+          </div>
+          <div style={{ fontSize:22, fontWeight:800, color:C.text, letterSpacing:-0.5 }}>Likhith</div>
+          <div style={{ display:"inline-flex", alignItems:"center", gap:5, background:C.purpleLight, borderRadius:20, padding:"5px 12px", marginTop:6, fontSize:12, fontWeight:700, color:C.purple }}>✦ Chill Explorer</div>
+        </div>
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10, marginBottom:22 }}>
+          {[{label:"Squads Joined",val:"12"},{label:"Great Matches",val:"8"},{label:"Success Rate",val:"92%"}].map(s=>(
+            <div key={s.label} style={{ background:C.card, borderRadius:18, padding:"16px 12px", textAlign:"center", border:`1px solid ${C.border}` }}>
+              <div style={{ fontSize:22, fontWeight:800, color:C.text }}>{s.val}</div>
+              <div style={{ fontSize:10, color:C.muted, marginTop:3, lineHeight:1.4 }}>{s.label}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ background:C.card, borderRadius:20, padding:"16px 20px", marginBottom:20, border:`1px solid ${C.border}` }}>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
+            <span style={{ fontSize:14, fontWeight:700, color:C.text }}>Your Social Pattern</span>
+            <span style={{ fontSize:14, color:C.purple }}>→</span>
+          </div>
+          <div style={{ display:"flex", gap:16, alignItems:"center" }}>
+            <svg width="76" height="76" viewBox="0 0 80 80" style={{ flexShrink:0 }}>
+              <polygon points="40,6 72,60 8,60" fill={C.purpleLight} stroke={C.purple} strokeWidth="1.5" opacity="0.9"/>
+              <polygon points="40,20 58,52 22,52" fill={C.purple} opacity="0.25"/>
+              <polygon points="40,32 52,46 28,46" fill={C.purple} opacity="0.2"/>
+              {[[40,6],[72,60],[8,60]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="4" fill={C.purple}/>)}
+            </svg>
+            <div>
+              {["Prefers small groups","Low pressure vibe","Creative environments","Explores new places"].map((t,i)=>(
+                <div key={i} style={{ display:"flex", alignItems:"center", gap:8, marginBottom:8 }}>
+                  <div style={{ width:6, height:6, borderRadius:"50%", background:C.purple, flexShrink:0 }}/>
+                  <span style={{ fontSize:12, color:C.muted, lineHeight:1.3 }}>{t}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div style={{ marginBottom:22 }}>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
+            <span style={{ fontSize:14, fontWeight:700, color:C.text }}>Saved Events</span>
+            <span style={{ fontSize:13, color:C.purple, fontWeight:600 }}>See all</span>
+          </div>
+          <div style={{ display:"flex", gap:10, overflowX:"auto", paddingBottom:4, scrollbarWidth:"none" }}>
+            {events.map(e=>(
+              <div key={e.id} style={{ flexShrink:0, width:94 }}>
+                <div style={{ width:94, height:76, borderRadius:14, background:e.gradient, marginBottom:6 }}/>
+                <div style={{ fontSize:11, fontWeight:600, color:C.text, lineHeight:1.3 }}>{e.name.split(" ").slice(0,2).join(" ")}</div>
+                <div style={{ fontSize:10, color:C.muted }}>{e.time.split("·")[0].trim()}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
+            <span style={{ fontSize:14, fontWeight:700, color:C.text }}>Past Squads</span>
+            <span style={{ fontSize:13, color:C.purple, fontWeight:600 }}>See all</span>
+          </div>
+          <div style={{ display:"flex", gap:6 }}>{["Maya K","Alex R","Jordan L","Sam T","Casey M","Ria P"].map((n,i)=><Av key={i} name={n} size={42}/>)}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function LoginScreen({ onContinue }) {
+  return (
+    <div style={{ height:"100%", display:"flex", flexDirection:"column", background:C.bg, padding:"40px 24px 30px" }}>
+      <div style={{ flex:1, display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center" }}>
+        <img src="logo.png" alt="Plot Logo" style={{ width:240, objectFit:"contain", marginBottom:20 }} />
+        <div style={{ fontSize:16, color:C.muted, textAlign:"center", marginBottom:40 }}>Discover your people.</div>
+      </div>
+      <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
+        <button style={{ padding:"16px", borderRadius:30, background:"#1C1917", color:"white", fontWeight:700, fontSize:16, border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", gap:10 }}>
+          <span style={{fontSize:20}}></span> Continue with Apple
+        </button>
+        <button style={{ padding:"16px", borderRadius:30, background:"white", color:C.text, fontWeight:700, fontSize:16, border:`1px solid ${C.border}`, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", gap:10 }}>
+          <span style={{fontSize:20, fontWeight:800, color:"#EA4335"}}>G</span> Continue with Google
+        </button>
+        <div style={{ textAlign:"center", fontSize:14, color:C.muted, margin:"10px 0" }}>or</div>
+        <button onClick={onContinue} style={{ padding:"16px", borderRadius:30, background:`linear-gradient(135deg, ${C.purple}, ${C.coral})`, color:"white", fontWeight:800, fontSize:16, border:"none", cursor:"pointer" }}>
+          Use Phone Number
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function OnboardingScreen({ onFinish }) {
+  const [step, setStep] = useState(1);
+  const [name, setName] = useState("");
+  const [vibes, setVibes] = useState([]);
+
+  if (step === 3) {
+    setTimeout(() => onFinish(name || "Explorer"), 2500);
+    return (
+      <div style={{ height:"100%", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center", background:C.bg, padding:30 }}>
+        <div style={{ width:160, height:160, borderRadius:"50%", background:`radial-gradient(circle at 38% 33%, #F0EEFF 0%, ${C.purple} 45%, ${C.blue} 100%)`, boxShadow:`0 20px 60px rgba(123,92,246,0.45)`, animation:"spin 2s linear infinite", marginBottom:40 }}/>
+        <div style={{ fontSize:22, fontWeight:800, color:C.text }}>Calibrating Aura...</div>
+        <div style={{ fontSize:15, color:C.muted, marginTop:10 }}>Finding your perfect matches</div>
+        <style>{`@keyframes spin { 100% { transform: rotate(360deg); } }`}</style>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ height:"100%", display:"flex", flexDirection:"column", background:C.bg, padding:"30px 24px" }}>
+      <div style={{ flex:1 }}>
+        <img src="logo.png" alt="Plot Logo" style={{ height:40, objectFit:"contain", marginBottom:30 }} />
+        {step === 1 ? (
+          <div>
+            <div style={{ fontSize:26, fontWeight:800, color:C.text, marginBottom:10 }}>What's your name?</div>
+            <div style={{ fontSize:15, color:C.muted, marginBottom:30 }}>This is how you'll appear to others.</div>
+            <div style={{ display:"flex", justifyContent:"center", marginBottom:30 }}>
+              <div style={{ width:100, height:100, borderRadius:"50%", background:C.purpleLight, border:`2px dashed ${C.purple}`, display:"flex", alignItems:"center", justifyContent:"center", color:C.purple, fontSize:30, cursor:"pointer" }}>+📷</div>
+            </div>
+            <input type="text" placeholder="First Name" value={name} onChange={e=>setName(e.target.value)} style={{ width:"100%", padding:"18px 20px", borderRadius:16, border:`1px solid ${C.border}`, fontSize:18, fontWeight:600, outline:"none", background:"white" }} />
+          </div>
+        ) : (
+          <div>
+            <div style={{ fontSize:26, fontWeight:800, color:C.text, marginBottom:10 }}>Select your vibes</div>
+            <div style={{ fontSize:15, color:C.muted, marginBottom:30 }}>Pick at least 3 to tune your Aura.</div>
+            <div style={{ display:"flex", flexWrap:"wrap", gap:10 }}>
+              {["Chill","Explore","Nightlife","Outdoors","Creative","Foodie","Deep Talks","Music"].map(v => {
+                const sel = vibes.includes(v);
+                return (
+                  <button key={v} onClick={()=>{
+                    setVibes(sel ? vibes.filter(x=>x!==v) : [...vibes, v]);
+                  }} style={{ padding:"12px 20px", borderRadius:30, border:sel?"none":`1px solid ${C.border}`, background:sel?C.purple:"white", color:sel?"white":C.text, fontWeight:700, fontSize:15, cursor:"pointer" }}>{v}</button>
+                )
+              })}
+            </div>
+          </div>
+        )}
+      </div>
+      <button onClick={() => step === 1 ? setStep(2) : setStep(3)} style={{ padding:"18px", borderRadius:30, background:C.text, color:"white", fontWeight:800, fontSize:17, border:"none", cursor:"pointer", opacity:(step===1&&!name)||(step===2&&vibes.length<3)?0.5:1 }} disabled={(step===1&&!name)||(step===2&&vibes.length<3)}>
+        {step === 1 ? "Next" : "Tune My Aura ✨"}
+      </button>
+    </div>
+  );
+}
+
+export default function PlotApp() {
+  const [authState, setAuthState] = useState("login");
+  const [userName, setUserName] = useState("");
+  const [screen, setScreen] = useState("discover");
+  const [activeTab, setActiveTab] = useState("discover");
+  const [selEvent, setSelEvent] = useState(null);
+  const [energy, setEnergy] = useState(45);
+  const [intent, setIntent] = useState("Explore");
+  const [socialMode, setSocialMode] = useState("Open");
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiResults, setAiResults] = useState(null);
+
+  const go = (tab) => { setActiveTab(tab); setScreen(tab); };
+  const openEvent = (ev) => { setSelEvent(ev); setScreen("event"); };
+
+  const findPeople = async () => {
+    setAiLoading(true);
+    setAiResults(null);
+    try {
+      const res = await fetch("https://api.anthropic.com/v1/messages", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({
+          model:"claude-sonnet-4-20250514",
+          max_tokens:800,
+          messages:[{role:"user",content:`You are Plot's AI "Aura". Generate 3 personalized event recommendations based on: Energy ${energy}/100 (${energy<35?"low-key":energy<65?"moderate":"high"}), Intent: ${intent}, Social mode: ${socialMode}. Reply ONLY with valid JSON, no markdown: {"events":[{"name":"...","vibe":"...","matchScore":92,"reason":"one sentence why it fits","time":"Tonight · 8 PM","distance":"0.4 mi","going":8}]}`}]
+        })
+      });
+      const data = await res.json();
+      const txt = data.content.map(c=>c.type==="text"?c.text:"").join("").replace(/```json|```/g,"").trim();
+      setAiResults(JSON.parse(txt).events);
+    } catch {
+      setAiResults([
+        {name:"Rooftop Jazz Night",vibe:"Chill Vibes",matchScore:94,reason:"Matches your relaxed energy and open social mode",time:"Tonight · 8 PM",distance:"0.4 mi",going:12},
+        {name:"Art Gallery Opening",vibe:"Creative",matchScore:88,reason:"Low-pressure creative space perfect for exploration",time:"Tonight · 7 PM",distance:"0.8 mi",going:24},
+        {name:"Sunset Picnic Social",vibe:"Laid Back",matchScore:83,reason:"Small group outdoor setting fits your preferences",time:"Today · 6:30 PM",distance:"1.2 mi",going:8},
+      ]);
+    }
+    setAiLoading(false);
+  };
+
+  const tabs = [
+    {id:"discover",label:"Discover"},{id:"map",label:"Map"},
+    {id:"aura",label:"Aura"},{id:"pulse",label:"Pulse"},{id:"you",label:"You"},
+  ];
+  const tabScreenMap = {you:"profile"};
+
+  return (
+    <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"flex-start", minHeight:"100vh", padding:"20px 16px 24px", background:"linear-gradient(135deg, #EDE8FC 0%, #E6F0FF 50%, #FDE8E0 100%)", fontFamily:"-apple-system, 'SF Pro Display', BlinkMacSystemFont, sans-serif" }}>
+      <div style={{ marginBottom:16, display:"flex", alignItems:"center", gap:12 }}>
+        <img src="logo.png" alt="Plot Logo" style={{ height:40, objectFit:"contain" }} onError={(e) => { e.target.style.display = 'none'; }} />
+        <span style={{ fontSize:16, fontWeight:700, color:"#9A9590", letterSpacing:0, marginTop:10 }}>prototype</span>
+      </div>
+      <div style={{ width:375, background:C.bg, borderRadius:50, overflow:"hidden", boxShadow:"0 40px 80px rgba(0,0,0,0.22), 0 0 0 10px #1C1917, 0 0 0 12px #2E2E2E", display:"flex", flexDirection:"column", height:800 }}>
+        <div style={{ background:C.bg, padding:"10px 28px 0", display:"flex", justifyContent:"space-between", alignItems:"center", flexShrink:0 }}>
+          <span style={{ fontSize:15, fontWeight:700, color:C.text }}>9:41</span>
+          <div style={{ width:112, height:30, background:"#1C1917", borderRadius:20 }}/>
+          <div style={{ display:"flex", gap:4, alignItems:"center" }}>
+            <svg width="16" height="10" viewBox="0 0 16 10"><rect x="0" y="3" width="2.5" height="7" rx="1" fill={C.text} opacity="0.4"/><rect x="4" y="2" width="2.5" height="8" rx="1" fill={C.text} opacity="0.6"/><rect x="8" y="0.5" width="2.5" height="9.5" rx="1" fill={C.text}/><rect x="12" y="0.5" width="4" height="9.5" rx="1" stroke={C.text} fill="none" strokeWidth="1"/><rect x="12.8" y="1.3" width="2.4" height="7.9" rx="0.5" fill={C.text}/></svg>
+          </div>
+        </div>
+        <div style={{ flex:1, overflow:"hidden", position:"relative" }}>
+          {authState === "login" && <LoginScreen onContinue={() => setAuthState("onboarding")} />}
+          {authState === "onboarding" && <OnboardingScreen onFinish={(name) => { setUserName(name); setAuthState("authenticated"); }} />}
+          {authState === "authenticated" && screen === "discover" && <DiscoverScreen onEvent={openEvent} userName={userName} />}
+          {authState === "authenticated" && screen === "map" && <MapScreen/>}
+          {authState === "authenticated" && screen === "aura" && <AuraScreen energy={energy} setEnergy={setEnergy} intent={intent} setIntent={setIntent} mode={socialMode} setMode={setSocialMode} onFind={findPeople} loading={aiLoading} results={aiResults}/>}
+          {authState === "authenticated" && screen === "pulse" && <PulseScreen/>}
+          {authState === "authenticated" && screen === "profile" && <ProfileScreen/>}
+          {authState === "authenticated" && screen === "event" && selEvent && <EventDetail event={selEvent} onBack={()=>setScreen("discover")}/>}
+        </div>
+        {authState === "authenticated" && screen !== "event" && (
+          <div style={{ background:C.navBg, borderTop:`1px solid ${C.border}`, padding:"8px 0 22px", display:"flex", justifyContent:"space-around", flexShrink:0 }}>
+            {tabs.map(tab=>{
+              const screenId = tabScreenMap[tab.id]||tab.id;
+              const isActive = activeTab===tab.id;
+              return (
+                <button key={tab.id} onClick={()=>go(screenId)||setActiveTab(tab.id)||(()=>{setActiveTab(tab.id);setScreen(screenId);})()} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", gap:3, padding:"4px 10px", color:isActive?C.purple:C.muted }} onClick={()=>{setActiveTab(tab.id);setScreen(screenId);}}>
+                  <NavIcon type={tab.id==="you"?"you":tab.id} active={isActive}/>
+                  <span style={{ fontSize:10, fontWeight:isActive?700:400 }}>{tab.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+      <div style={{ marginTop:16, fontSize:12, color:"rgba(28,25,23,0.5)", textAlign:"center" }}>
+        Tap <strong style={{ color:C.purple }}>Aura</strong> to get AI-powered event recommendations
+      </div>
+    </div>
+  );
+}
