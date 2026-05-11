@@ -1,4 +1,30 @@
-import { useState, useMemo } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plot Prototype</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #111;
+      height: 100vh;
+      overflow: hidden;
+    }
+    * { box-sizing: border-box; }
+  </style>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useMemo } = React;
+    
 
 const C = {
   bg: "#FAF8F3", card: "#FFFFFF", coral: "#FF6845", coralLight: "#FFF0EB",
@@ -890,7 +916,7 @@ function AuraOnboardingScreen({ onComplete }) {
   );
 }
 
-export default function PlotApp() {
+function PlotApp() {
   const [authState, setAuthState] = useState("login");
   const [userName, setUserName] = useState("");
   const [screen, setScreen] = useState("discover");
@@ -1005,3 +1031,9 @@ export default function PlotApp() {
     </div>
   );
 }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<PlotApp />);
+  </script>
+</body>
+</html>
