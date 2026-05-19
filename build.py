@@ -34,7 +34,7 @@ html = f"""<!DOCTYPE html>
 <body>
   <div id="root"></div>
   <script type="text/babel">
-    const {{ useState, useMemo }} = React;
+    const {{ useState, useMemo, useEffect }} = React;
     {code}
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(<PlotApp />);
@@ -42,5 +42,6 @@ html = f"""<!DOCTYPE html>
 </body>
 </html>"""
 
-with open('test.html', 'w') as f:
-    f.write(html)
+for filename in ['test.html', 'index.html', 'app.html']:
+    with open(filename, 'w') as f:
+        f.write(html)
