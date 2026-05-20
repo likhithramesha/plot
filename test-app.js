@@ -1,3 +1,4 @@
+if (process.stdout._handle) process.stdout._handle.setBlocking(true);
 const puppeteer = require('puppeteer-core');
 
 (async () => {
@@ -18,7 +19,7 @@ const puppeteer = require('puppeteer-core');
   page.on('pageerror', err => console.error('BROWSER PAGE ERROR:', err.toString()));
 
   console.log("Navigating to http://localhost:8000/index.html ...");
-  await page.goto('http://localhost:8000/index.html', { waitUntil: 'networkidle0' });
+  await page.goto('http://localhost:8000/index.html', { waitUntil: 'load' });
 
   // Wait 1 second for Babel to compile React code
   await new Promise(r => setTimeout(r, 1000));

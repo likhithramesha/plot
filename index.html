@@ -4,17 +4,167 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plot Prototype</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-background": "#1a1c1a",
+            "surface": "#faf9f6",
+            "inverse-primary": "#d3c5ad",
+            "on-surface": "#1a1c1a",
+            "on-tertiary-fixed": "#26181a",
+            "tertiary-container": "#fee3e5",
+            "secondary-container": "#dbe2fa",
+            "primary-fixed-dim": "#d3c5ad",
+            "on-tertiary-fixed-variant": "#544244",
+            "on-primary-fixed-variant": "#4f4533",
+            "tertiary": "#6d595b",
+            "tertiary-fixed": "#f7dcde",
+            "error": "#ba1a1a",
+            "inverse-surface": "#2f312f",
+            "on-secondary-container": "#5d6478",
+            "tertiary-fixed-dim": "#dac0c2",
+            "secondary-fixed": "#dbe2fa",
+            "error-container": "#ffdad6",
+            "on-error": "#ffffff",
+            "on-secondary-fixed-variant": "#3f4759",
+            "surface-bright": "#faf9f6",
+            "surface-container": "#efeeeb",
+            "on-secondary-fixed": "#141b2c",
+            "inverse-on-surface": "#f2f1ee",
+            "on-primary-container": "#726753",
+            "surface-dim": "#dbdad7",
+            "secondary": "#575e72",
+            "on-error-container": "#93000a",
+            "on-primary-fixed": "#221b0b",
+            "on-secondary": "#ffffff",
+            "on-primary": "#ffffff",
+            "surface-container-low": "#f4f3f1",
+            "on-tertiary": "#ffffff",
+            "primary-container": "#f7e7ce",
+            "surface-container-highest": "#e3e2e0",
+            "primary": "#685d4a",
+            "outline-variant": "#cec5ba",
+            "surface-container-lowest": "#ffffff",
+            "secondary-fixed-dim": "#bfc6dd",
+            "surface-variant": "#e3e2e0",
+            "background": "#faf9f6",
+            "outline": "#7d766c",
+            "on-surface-variant": "#4b463d",
+            "primary-fixed": "#f0e0c8",
+            "surface-container-high": "#e9e8e5",
+            "surface-tint": "#685d4a",
+            "on-tertiary-container": "#786466"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px",
+            "xxl": "1.5rem",
+            "3xl": "2rem"
+          },
+          spacing: {
+            "lg": "24px",
+            "xl": "32px",
+            "md": "16px",
+            "xs": "4px",
+            "container-max": "1200px",
+            "unit": "4px",
+            "gutter": "20px",
+            "xxl": "48px",
+            "sm": "8px"
+          },
+          fontFamily: {
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Bricolage Grotesque"],
+            "headline-md": ["Bricolage Grotesque"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Bricolage Grotesque"],
+            "display-lg": ["Bricolage Grotesque"],
+            "label-md": ["Plus Jakarta Sans"]
+          },
+          fontSize: {
+            "label-sm": ["12px", { "lineHeight": "1.2", "fontWeight": "500" }],
+            "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+            "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+            "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+            "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "700" }],
+            "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "label-md": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "600" }]
+          },
+          boxShadow: {
+            'soft': '0 10px 30px -10px rgba(0, 0, 0, 0.04)',
+            'glow': '0 0 20px rgba(136, 172, 240, 0.4)'
+          }
+        }
+      }
+    };
+  </script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
     body, html {
       margin: 0;
       padding: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: #111;
+      background: linear-gradient(135deg, #f5f2eb 0%, #eef3ff 50%, #fef3eb 100%);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       height: 100vh;
       overflow: hidden;
     }
     * { box-sizing: border-box; }
+    
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .aura-gradient {
+      background: radial-gradient(circle at center, rgba(136, 172, 240, 0.25) 0%, rgba(246, 203, 206, 0.15) 50%, transparent 100%);
+      animation: pulse-aura 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse-aura {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(1.1); opacity: 1; }
+    }
+
+    .aura-bg {
+      background: radial-gradient(circle at center, rgba(219, 226, 250, 0.7) 0%, rgba(254, 227, 229, 0.5) 50%, transparent 70%);
+      animation: pulse-aura-slow 5s ease-in-out infinite;
+    }
+    
+    @keyframes pulse-aura-slow {
+      0% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 0.5; }
+    }
+
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   </style>
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
@@ -27,11 +177,14 @@
     
 
 const C = {
-  bg: "#FAF8F3", card: "#FFFFFF", coral: "#FF6845", coralLight: "#FFF0EB",
+  bg: "#faf9f6", card: "#ffffff", coral: "#FF6845", coralLight: "#FFF0EB",
   purple: "#7B5CF6", purpleLight: "#F0EEFF", purpleMid: "#A78BFA",
   blue: "#4A8CF5", blueLight: "#EEF4FF", gold: "#F59E0B",
   green: "#22C55E", greenLight: "#DCFCE7",
-  text: "#1C1917", muted: "#9A9590", border: "#EEEAD4", navBg: "#FFFFFF",
+  text: "#1a1c1a", muted: "#4b463d", border: "#cec5ba", navBg: "#ffffff",
+  primary: "#685d4a", primaryContainer: "#f7e7ce", secondary: "#575e72",
+  secondaryContainer: "#dbe2fa", tertiary: "#6d595b", tertiaryContainer: "#fee3e5",
+  outline: "#7d766c", error: "#ba1a1a",
 };
 
 const events = [
@@ -40,6 +193,7 @@ const events = [
     distance:"0.4 mi", going:4, friends:3,
     tags:["Brunch","Music","Great crowd"],
     gradient:"linear-gradient(145deg,#FF9A72,#FF6845,#E8445A)",
+    image:"https://lh3.googleusercontent.com/aida-public/AB6AXuCNXbnHuvMdL_sLx2IFn5gZOu94v98GBbyOVMnuGraTCW2rD_HA0Pz2anGL90b-lqPz__saikr6eTQIQadVx-D8N90Xcv82Tv6r7WWrEzRQ2XxtZSepS1RIZWlzWxMVvFgYbAaDfCwQpU2lzWEzzotU-LhgZLZqRk1CwBdZmzRSfCF67c4NFc4TjY8Is5A2GimMR0NesmMIKWncGAbR9G49VW6lSUp-GCzBg4CD9Vb7A9YMz6e_j2e6afI1BN_EMetZoCL4ur4T4qw",
     activityType:"food",   energyLevel:2, crowdCategory:"medium",
     newcomerFriendly:0.80, safetyScore:0.92, timeCategory:"morning",
     distanceMiles:0.4, distanceTier:1, costLevel:2,
@@ -49,6 +203,7 @@ const events = [
     distance:"1.2 mi", going:6, friends:3,
     tags:["Live Music","Beach","Chill Vibes"],
     gradient:"linear-gradient(145deg,#FFD54F,#FF8A00,#FF5722)",
+    image:"https://lh3.googleusercontent.com/aida-public/AB6AXuB0EDUYMbNsqMJ0dhCXOaM9o4lfOs5hfcyRP58wznX-SgkpJcdGLYlFPxU0rmyO20tHta-HdDfAcqRA-As2xzYSCiL_Mh7ryrfLYOCwuMkHkLzxm7XOgFJlcLgnmPt3asXY6OvpAEqsYllHEgAhyOsP1kdGS5l8aPmEjQE1CtS-UxCvQoqWUA2BY2jxgIxRpTLMPBRHndovXqBu-LQc7VO8bgXXkjKv83d7xMeJ_z3ORVTCC6y9GyuHFI1iA9Hg_yyPC-7EngHCgyI",
     activityType:"music",  energyLevel:2, crowdCategory:"medium",
     newcomerFriendly:0.85, safetyScore:0.88, timeCategory:"evening",
     distanceMiles:1.2, distanceTier:2, costLevel:0,
@@ -58,6 +213,7 @@ const events = [
     distance:"0.5 mi", going:5, friends:2,
     tags:["Dinner","Social","Outdoor"],
     gradient:"linear-gradient(145deg,#81C784,#388E3C,#1B5E20)",
+    image:"https://lh3.googleusercontent.com/aida-public/AB6AXuBQJjnSn0pR0oC8yUGhiGIXqNByk7jHep4LL0yYLF35sbx4n-8Bxnh9sFo0njn5ns5XoXkQ1gwqo7L1Re4xAK0FjEvPVfTYZ7v4lXwbk-NhlSnDB9TWDhe5Pwj8hyeDBvTwPWD2VAI4hgBwAGYqzL0kk4dqaUu_xuIF-UyPGHHZbIF5wYRKR5L4I1h8iDJzZIH9PzQViHWst3jg8gA7eZutwPHqXi9Ut4Vy7SYNiDolX96qh-oSy6bhzbbCcNHchAxhkHp5sJbr0aA",
     activityType:"food",   energyLevel:2, crowdCategory:"small",
     newcomerFriendly:0.65, safetyScore:0.95, timeCategory:"evening",
     distanceMiles:0.5, distanceTier:1, costLevel:2,
@@ -67,6 +223,7 @@ const events = [
     distance:"0.6 mi", going:8, friends:1,
     tags:["Art","Wine","Creative"],
     gradient:"linear-gradient(145deg,#CE93D8,#9C27B0,#6A1B9A)",
+    image:"https://lh3.googleusercontent.com/aida-public/AB6AXuAcjOKLDZh1-vH6YDAqcnsAB9p-5KPdxN_mEvGW4VHt40rDQcbAwz5vWem8PreZSoywlyG992YJKVyxO2VDJMzf4SED61d_GbVwKWp6-lxtdwoukhJeBK1WBccU1xTctiK7UJD342k69F-eFsLshqOxMpdQr26zBTj_YopJESbUB3etdT5tXSuMdQ5Y873Vty7LzlVJBaYmm-Rd6U5ACN2KXsybQozyHbKI9GpOlRRx3GtYKwVKBJlxmbvTU0Xu5TRuf9jYM5UueA8",
     activityType:"art",    energyLevel:2, crowdCategory:"small",
     newcomerFriendly:0.72, safetyScore:0.90, timeCategory:"night",
     distanceMiles:0.6, distanceTier:1, costLevel:2,
@@ -250,7 +407,10 @@ const NavIcon = ({ type, active }) => {
   const icons = {
     discover: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={col} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88" fill={active?col:"none"} strokeWidth="1.5"/></svg>,
     map: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={col} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round"><path d="M3 7l6-2 6 2 6-2v14l-6 2-6-2-6 2V7z"/><path d="M9 5v14M15 7v14" strokeWidth="1.2"/></svg>,
-    aura: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={col} strokeWidth={sw} strokeLinecap="round"><path d="M12 2l1.9 5.8H20l-4.9 3.6 1.9 5.8L12 14l-4.9 3.2 1.9-5.8L4 7.8h6.1z"/></svg>,
+    add: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={col} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>,
+    aura: active
+      ? <img src="logo.png" alt="Aura" width="22" height="22" style={{objectFit:"contain",filter:"brightness(0.3) sepia(1) hue-rotate(240deg) saturate(3)"}} onError={(e)=>{e.target.style.display='none';}} />
+      : <img src="logo.png" alt="Aura" width="22" height="22" style={{objectFit:"contain",opacity:0.5}} onError={(e)=>{e.target.style.display='none';}} />,
     pulse: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={col} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round"><polyline points="2,12 6,12 9,5 13,19 16,12 20,12 22,12"/></svg>,
     you: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={col} strokeWidth={sw} strokeLinecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-3.5 3.6-6 8-6s8 2.5 8 6"/></svg>,
   };
@@ -259,54 +419,194 @@ const NavIcon = ({ type, active }) => {
 
 function DiscoverScreen({ onEvent, userName, events: scoredEvents = events, userProfile }) {
   const [filter, setFilter] = useState("All");
+
+  // Determine greeting based on time of day
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
+
+  // Filter events based on active category
+  const filteredEvents = useMemo(() => {
+    if (filter === "All" || filter === "For You") return scoredEvents;
+    if (filter === "Food") {
+      return scoredEvents.filter(ev => ev.activityType === "food" || ev.tags.some(t => t.toLowerCase().includes("food") || t.toLowerCase().includes("brunch") || t.toLowerCase().includes("dinner")));
+    }
+    if (filter === "Music") {
+      return scoredEvents.filter(ev => ev.activityType === "music" || ev.tags.some(t => t.toLowerCase().includes("music") || t.toLowerCase().includes("jam") || t.toLowerCase().includes("beats")));
+    }
+    if (filter === "Creative") {
+      return scoredEvents.filter(ev => ev.activityType === "art" || ev.tags.some(t => t.toLowerCase().includes("art") || t.toLowerCase().includes("paint") || t.toLowerCase().includes("creative")));
+    }
+    if (filter === "Social") {
+      return scoredEvents.filter(ev => ev.going >= 5);
+    }
+    return scoredEvents;
+  }, [scoredEvents, filter]);
+
+  // Extract clean aura tag string
+  const rawAuraTag = getAuraTag(userProfile);
+  const cleanAuraTag = rawAuraTag.replace(/[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]/g, "").trim();
+  const auraIcon = cleanAuraTag.includes("Chill") ? "cloud" : cleanAuraTag.includes("Social") ? "bolt" : cleanAuraTag.includes("Curious") ? "eco" : "local_fire_department";
+
   return (
-    <div style={{ height:"100%", overflowY:"auto", background:C.bg, paddingBottom:12 }}>
-      <div style={{ padding:"12px 20px 0", position:"sticky", top:0, background:C.bg, zIndex:10 }}>
-        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:8 }}>
-          <div>
-            <div style={{ fontSize:13, color:C.muted }}>Good morning,</div>
-            <div style={{ fontSize:24, fontWeight:800, color:C.text, letterSpacing:-0.8, lineHeight:1.15 }}>{userName || "Likhith"} 👋</div>
-          </div>
-          <Av name={userName || "Likhith Kumar"} size={42} />
-        </div>
-        <div style={{ display:"inline-flex", alignItems:"center", gap:5, background:C.purpleLight, borderRadius:20, padding:"5px 12px", marginBottom:14, fontSize:12, fontWeight:700, color:C.purple }}>{getAuraTag(userProfile)}</div>
-        <div style={{ display:"flex", gap:8, overflowX:"auto", paddingBottom:14, scrollbarWidth:"none" }}>
-          {["All","Day","Night","Food","Music"].map(f=>(
-            <button key={f} onClick={()=>setFilter(f)} style={{ flexShrink:0, padding:"7px 16px", borderRadius:20, border:filter===f?"none":`1px solid ${C.border}`, background:filter===f?C.text:"white", color:filter===f?"white":C.text, fontSize:13, fontWeight:600, cursor:"pointer" }}>{f}</button>
-          ))}
-        </div>
+    <div className="h-full overflow-y-auto bg-surface pb-28 hide-scrollbar relative">
+      {/* Ambient background glows */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-[5%] right-[-10%] w-[260px] h-[260px] aura-gradient rounded-full blur-[50px] opacity-70"></div>
+        <div className="absolute top-[35%] left-[-15%] w-[240px] h-[240px] aura-gradient rounded-full blur-[45px] opacity-40"></div>
       </div>
-      <div style={{ padding:"0 20px" }}>
-        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
-          <span style={{ fontSize:16, fontWeight:700, color:C.text }}>Top Picks For You</span>
-          <span style={{ fontSize:13, color:C.purple, fontWeight:600 }}>See all</span>
-        </div>
-        {scoredEvents.slice(0,2).map(ev=>(
-          <div key={ev.id} onClick={()=>onEvent(ev)} style={{ background:C.card, borderRadius:22, overflow:"hidden", marginBottom:16, cursor:"pointer", boxShadow:"0 3px 14px rgba(0,0,0,0.07)", border:`1px solid ${C.border}` }}>
-            <div style={{ position:"relative", height:155, background:ev.gradient }}>
-              <div style={{ position:"absolute", top:10, left:10 }}><MatchBadge score={ev.match}/></div>
-              <button onClick={e=>{e.stopPropagation();}} style={{ position:"absolute", top:10, right:10, width:34, height:34, borderRadius:"50%", background:"rgba(255,255,255,0.88)", border:"none", cursor:"pointer", fontSize:15, display:"flex", alignItems:"center", justifyContent:"center" }}>🔖</button>
-            </div>
-            <div style={{ padding:"14px 16px 16px" }}>
-              <div style={{ fontSize:17, fontWeight:700, color:C.text, marginBottom:3 }}>{ev.name}</div>
-              <div style={{ fontSize:12, color:C.muted, marginBottom:10 }}>{ev.time} · {ev.distance}</div>
-              <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:10 }}>
-                <div style={{ display:"flex", alignItems:"center", gap:6 }}>
-                  <div style={{ display:"flex" }}>{["A","B","C"].map((l,i)=><Av key={i} name={`${l} Person`} size={24}/>)}</div>
-                  <span style={{ fontSize:11, color:C.muted }}>{ev.friends} friends of friends</span>
-                </div>
-                <span style={{ fontSize:11, color:C.muted }}>{ev.going} going</span>
-              </div>
-              <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>{ev.tags.map(t=><Pill key={t} label={t}/>)}</div>
-            </div>
-          </div>
-        ))}
-        <div style={{ background:C.card, borderRadius:22, padding:"14px 16px", border:`1px solid ${C.border}`, marginBottom:16, display:"flex", alignItems:"center", gap:12 }}>
-          <div style={{ width:54, height:54, borderRadius:14, background:"linear-gradient(135deg,#FFD700,#FFA500)", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", fontSize:24 }}>⚡</div>
+
+      <div className="relative z-10 px-gutter pt-4">
+        {/* Profile and Greeting Header */}
+        <div className="flex justify-between items-start mb-2">
           <div>
-            <div style={{ fontSize:11, color:C.gold, fontWeight:700, marginBottom:2 }}>Suggested Spot · Sponsored</div>
-            <div style={{ fontSize:15, fontWeight:700, color:C.text }}>Trending with people like you</div>
-            <div style={{ fontSize:12, color:C.muted, marginTop:2 }}>3 Aura matches going tonight</div>
+            <div className="font-label-sm text-xs text-on-surface-variant/60 uppercase tracking-wider font-bold mb-0.5">{greeting},</div>
+            <h2 className="font-display-lg text-2xl text-on-background font-extrabold tracking-tight leading-tight">
+              {userName || "Likhith"}
+            </h2>
+          </div>
+          <Av name={userName || "Likhith Kumar"} size={44} />
+        </div>
+
+        {/* Aura Active Badge */}
+        <div className="mb-6 flex">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary-container/70 text-on-secondary-container font-label-md text-xs font-bold hover:bg-secondary-container/90 transition-colors cursor-pointer shadow-sm">
+            <span className="material-symbols-outlined text-[15px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+              {auraIcon}
+            </span>
+            {cleanAuraTag}
+          </span>
+        </div>
+
+        {/* Horizontal Quick Filters Bar */}
+        <div className="flex gap-2 overflow-x-auto pb-4 hide-scrollbar -mx-gutter px-gutter">
+          {["For You", "Today", "Creative", "Social", "Food", "Music"].map(f => (
+            <button
+              key={f}
+              onClick={() => setFilter(f)}
+              className={`flex-shrink-0 px-4 py-2 rounded-full font-label-md text-xs transition-all duration-150 active:scale-95 shadow-sm border ${
+                (filter === f || (filter === "All" && f === "For You"))
+                  ? "bg-on-background text-surface border-on-background font-extrabold"
+                  : "bg-white text-on-background border-outline-variant/60 hover:bg-surface-container-low font-medium"
+              }`}
+            >
+              {f}
+            </button>
+          ))}
+          <button className="flex-shrink-0 px-3 py-2 rounded-full bg-white text-on-background border border-outline-variant/60 hover:bg-surface-container-low flex items-center justify-center active:scale-95 shadow-sm">
+            <span className="material-symbols-outlined text-[16px]">tune</span>
+          </button>
+        </div>
+
+        {/* Main Content Area */}
+        <div className="mt-4">
+          <div className="flex justify-between items-center mb-4">
+            <span className="font-headline-md text-base font-bold text-on-background">Top Picks For You</span>
+            <span className="font-label-md text-xs text-primary font-bold hover:underline cursor-pointer">See all</span>
+          </div>
+
+          <div className="flex flex-col gap-5">
+            {filteredEvents.map(ev => (
+              <div
+                key={ev.id}
+                onClick={() => onEvent(ev)}
+                className="bg-white rounded-3xl overflow-hidden cursor-pointer shadow-soft hover:shadow-md transition-all duration-200 border border-outline-variant/30 flex flex-col group active:scale-[0.99]"
+              >
+                {/* Event Cover Image or Fallback Gradient */}
+                <div className="relative h-[160px] w-full flex-shrink-0 bg-cover bg-center overflow-hidden" style={{ backgroundImage: ev.image ? `url(${ev.image})` : ev.gradient }}>
+                  {!ev.image && <div className="absolute inset-0 bg-black/10"></div>}
+                  {/* Match score badge */}
+                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md rounded-full px-2.5 py-1.5 flex items-center gap-1 shadow-sm border border-outline-variant/20">
+                    <span className="material-symbols-outlined text-tertiary text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+                      psychology
+                    </span>
+                    <span className="font-label-md text-[11px] font-bold text-on-surface">{ev.match}% Match</span>
+                  </div>
+                  {/* Bookmark Button */}
+                  <button 
+                    onClick={e => { e.stopPropagation(); }} 
+                    className="absolute top-3 right-3 bg-white/90 backdrop-blur-md rounded-full w-8 h-8 flex items-center justify-center shadow-sm text-on-surface hover:bg-white active:scale-90 transition-transform"
+                  >
+                    <span className="material-symbols-outlined text-[16px] text-on-surface-variant">bookmark</span>
+                  </button>
+                </div>
+
+                {/* Event Details Footer */}
+                <div className="p-5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-headline-md text-[17px] font-bold text-on-background group-hover:text-primary transition-colors leading-snug mb-1">
+                      {ev.name}
+                    </h3>
+                    <div className="flex items-center gap-1.5 font-body-md text-xs text-on-surface-variant/70 mb-3">
+                      <span className="material-symbols-outlined text-[14px]">calendar_today</span>
+                      <span>{ev.time}</span>
+                      <span className="mx-1">&middot;</span>
+                      <span className="material-symbols-outlined text-[14px]">location_on</span>
+                      <span>{ev.distance}</span>
+                    </div>
+                  </div>
+
+                  {/* Attendance & Friends */}
+                  <div className="flex items-center justify-between pt-3 border-t border-outline-variant/30 mt-1">
+                    <div className="flex items-center gap-2">
+                      <div className="flex -space-x-1.5">
+                        {["A", "B", "C"].map((l, i) => (
+                          <Av key={i} name={`${l} User`} size={22} />
+                        ))}
+                      </div>
+                      <span className="font-label-sm text-[10px] text-on-surface-variant/80">
+                        {ev.friends} friends going
+                      </span>
+                    </div>
+                    <span className="font-label-sm text-[11px] font-bold bg-primary-container text-on-primary-container px-2 py-0.5 rounded-full">
+                      {ev.going} going
+                    </span>
+                  </div>
+
+                  {/* Tags */}
+                  <div className="flex gap-1.5 flex-wrap mt-3">
+                    {ev.tags.map(t => (
+                      <span key={t} className="font-label-sm text-[10px] px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant/80 border border-outline-variant/20 font-bold">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {/* Suggested Sponsored Spot Card */}
+            <div className="bg-primary-container text-on-primary-container rounded-3xl p-5 shadow-soft border border-primary/10 relative overflow-hidden active:scale-[0.99] transition-transform">
+              <div className="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-primary/5 blur-xl"></div>
+              <div className="flex justify-between items-start mb-3 relative z-10">
+                <div className="flex items-center gap-1.5">
+                  <span className="material-symbols-outlined text-primary text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+                    explore
+                  </span>
+                  <span className="font-label-sm text-[10px] uppercase tracking-wider font-extrabold text-primary">
+                    Suggested Spot
+                  </span>
+                </div>
+                <span className="px-2 py-0.5 rounded-full bg-primary text-surface font-label-sm text-[9px] uppercase font-bold tracking-wider">
+                  Sponsored
+                </span>
+              </div>
+              <h3 className="font-headline-md text-base font-bold mb-1 leading-snug relative z-10">
+                Sunset Picnic Series
+              </h3>
+              <p className="font-body-md text-xs text-on-primary-container/80 mb-4 relative z-10 leading-relaxed">
+                Trending with people of similar Aura profiles. 3 checked in tonight.
+              </p>
+              <div className="flex items-center justify-between relative z-10">
+                <div className="flex items-center gap-2">
+                  <div className="flex -space-x-1.5">
+                    <div className="w-6 h-6 rounded-full border-2 border-primary-container bg-neutral-200 flex items-center justify-center font-label-sm text-[8px] font-bold">JD</div>
+                    <div className="w-6 h-6 rounded-full border-2 border-primary-container bg-neutral-300 flex items-center justify-center font-label-sm text-[8px] font-bold">AM</div>
+                  </div>
+                  <span className="font-label-sm text-[10px] text-on-primary-container/70 font-semibold">Join the waitlist</span>
+                </div>
+                <span className="material-symbols-outlined text-primary text-[18px]">arrow_forward</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -392,66 +692,162 @@ function AuraScreen({ energy, setEnergy, intent, setIntent, mode, setMode, onFin
   const orbHue = Math.round(250 - energy * 1.9);
   const orbSat = 75 + energy * 0.15;
   return (
-    <div style={{ height:"100%", overflowY:"auto", background:`linear-gradient(180deg, #EDE6FE 0%, ${C.bg} 55%)` }}>
-      <div style={{ padding:"16px 24px 24px" }}>
-        <div style={{ textAlign:"center", marginBottom:2 }}>
-          <div style={{ fontSize:22, fontWeight:800, color:C.text, letterSpacing:-0.5 }}>Set your vibe</div>
-          <div style={{ fontSize:14, color:C.muted, marginTop:4 }}>We'll find your people</div>
+    <div className="h-full overflow-y-auto bg-surface pb-28 hide-scrollbar relative">
+      {/* Ambient glowing blurs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-[10%] left-[-10%] w-[250px] h-[250px] aura-gradient rounded-full blur-[60px] opacity-60"></div>
+        <div className="absolute bottom-[20%] right-[-10%] w-[250px] h-[250px] aura-gradient rounded-full blur-[60px] opacity-40"></div>
+      </div>
+
+      <div className="relative z-10 p-6">
+        <div className="text-center mb-6">
+          <h2 className="font-display-lg text-2xl font-extrabold text-on-background tracking-tight">Set your vibe</h2>
+          <p className="font-body-md text-sm text-on-surface-variant/80 mt-1">We'll find matches in sync with your aura</p>
         </div>
-        <div style={{ display:"flex", justifyContent:"center", margin:"22px 0 24px" }}>
-          <div style={{ width:160, height:160, borderRadius:"50%", background:`radial-gradient(circle at 38% 33%, hsl(${orbHue+50},100%,88%) 0%, hsl(${orbHue},${orbSat}%,65%) 45%, hsl(${orbHue-50},80%,42%) 100%)`, boxShadow:`0 20px 60px hsl(${orbHue},70%,60%,0.45)`, transition:"all 0.35s ease" }}/>
+
+        {/* Dynamic Vibe Orb */}
+        <div className="flex justify-center my-6">
+          <div 
+            className="w-40 h-40 rounded-full transition-all duration-300 relative"
+            style={{ 
+              background: `radial-gradient(circle at 38% 33%, hsl(${orbHue+50},100%,88%) 0%, hsl(${orbHue},${orbSat}%,65%) 45%, hsl(${orbHue-50},80%,42%) 100%)`, 
+              boxShadow: `0 15px 45px hsl(${orbHue},70%,60%,0.4)`
+            }}
+          >
+            {/* Soft inner glow pulse */}
+            <div className="absolute inset-0 rounded-full aura-bg opacity-30"></div>
+          </div>
         </div>
-        <div style={{ marginBottom:26 }}>
-          <div style={{ fontSize:14, fontWeight:700, color:C.text, marginBottom:12 }}>Energy</div>
-          <div style={{ display:"flex", alignItems:"center", gap:12 }}>
-            <span style={{ fontSize:22 }}>😌</span>
-            <div style={{ flex:1, position:"relative", height:28, display:"flex", alignItems:"center" }}>
-              <div style={{ position:"absolute", left:0, right:0, height:6, borderRadius:3, background:`linear-gradient(to right, ${C.purple}, ${C.coral})` }}/>
-              <input type="range" min="0" max="100" value={energy} onChange={e=>setEnergy(+e.target.value)} style={{ position:"absolute", inset:0, width:"100%", opacity:0, cursor:"pointer", height:"100%", margin:0 }}/>
-              <div style={{ position:"absolute", top:"50%", transform:`translate(-50%,-50%)`, left:`${energy}%`, width:22, height:22, borderRadius:"50%", background:"white", boxShadow:"0 2px 8px rgba(0,0,0,0.2)", border:`2.5px solid ${C.purple}`, pointerEvents:"none", transition:"left 0.06s" }}/>
+
+        {/* Slider Controls */}
+        <div className="mb-6 bg-white p-5 rounded-3xl border border-outline-variant/30 shadow-soft">
+          <div className="flex justify-between items-center mb-3">
+            <span className="font-label-md text-sm text-on-background font-bold">Social Energy</span>
+            <span className="font-label-sm text-xs text-primary font-bold bg-primary-container px-2 py-0.5 rounded-full">
+              {energy}%
+            </span>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="text-xl">😌</span>
+            <div className="flex-1 relative h-6 flex items-center">
+              <div className="absolute left-0 right-0 h-1.5 rounded-full bg-outline-variant/30 overflow-hidden">
+                <div 
+                  className="h-full bg-gradient-to-r from-primary via-tertiary to-secondary"
+                  style={{ width: `${energy}%` }}
+                />
+              </div>
+              <input 
+                type="range" 
+                min="0" 
+                max="100" 
+                value={energy} 
+                onChange={e => setEnergy(+e.target.value)} 
+                className="absolute inset-0 w-full opacity-0 cursor-pointer h-full"
+              />
+              {/* Thumb */}
+              <div 
+                className="absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-white shadow-md border-2 border-primary pointer-events-none transition-all"
+                style={{ left: `calc(${energy}% - 10px)` }}
+              />
             </div>
-            <span style={{ fontSize:22 }}>🔥</span>
+            <span className="text-xl">🔥</span>
           </div>
         </div>
-        <div style={{ marginBottom:24 }}>
-          <div style={{ fontSize:14, fontWeight:700, color:C.text, marginBottom:10 }}>Intent</div>
-          <div style={{ display:"flex", gap:8, flexWrap:"wrap" }}>
-            {["Chill","Explore","Meet","Deep Talk"].map(i=>(
-              <button key={i} onClick={()=>setIntent(i)} style={{ padding:"9px 18px", borderRadius:22, border:intent===i?"none":`1px solid ${C.border}`, background:intent===i?C.purple:"white", color:intent===i?"white":C.text, fontWeight:intent===i?700:500, fontSize:14, cursor:"pointer", transition:"all 0.15s" }}>{i}</button>
-            ))}
-          </div>
-        </div>
-        <div style={{ marginBottom:30 }}>
-          <div style={{ fontSize:14, fontWeight:700, color:C.text, marginBottom:10 }}>Social Mode</div>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10 }}>
-            {[{id:"Solo",icon:"👤"},{id:"Open",icon:"👥"},{id:"Group",icon:"🎉"}].map(m=>(
-              <button key={m.id} onClick={()=>setMode(m.id)} style={{ padding:"14px 8px", borderRadius:18, border:mode===m.id?`2px solid ${C.purple}`:`1px solid ${C.border}`, background:mode===m.id?C.purpleLight:"white", display:"flex", flexDirection:"column", alignItems:"center", gap:6, cursor:"pointer" }}>
-                <span style={{ fontSize:24 }}>{m.icon}</span>
-                <span style={{ fontSize:13, fontWeight:mode===m.id?700:500, color:mode===m.id?C.purple:C.text }}>{m.id}</span>
+
+        {/* Intent Buttons */}
+        <div className="mb-6 bg-white p-5 rounded-3xl border border-outline-variant/30 shadow-soft">
+          <h4 className="font-label-md text-sm text-on-background font-bold mb-3">Intent</h4>
+          <div className="flex gap-2 flex-wrap">
+            {["Chill", "Explore", "Meet", "Deep Talk"].map(i => (
+              <button 
+                key={i} 
+                onClick={() => setIntent(i)} 
+                className={`px-4 py-2 rounded-full font-label-md text-xs transition-all duration-150 active:scale-95 shadow-sm border ${
+                  intent === i 
+                    ? "bg-on-background text-surface border-on-background font-extrabold" 
+                    : "bg-surface text-on-background border-outline-variant/50 hover:bg-surface-container-low font-medium"
+                }`}
+              >
+                {i}
               </button>
             ))}
           </div>
         </div>
-        <button onClick={onFind} disabled={loading} style={{ width:"100%", padding:"17px", borderRadius:30, background:loading?"#C4B8F8":`linear-gradient(135deg, ${C.purple} 0%, ${C.coral} 100%)`, color:"white", fontWeight:800, fontSize:17, border:"none", cursor:loading?"not-allowed":"pointer", letterSpacing:0.2, marginBottom:24 }}>
-          {loading ? "✨ Finding your people..." : "Find my people ✨"}
-        </button>
-        {results && (
-          <div>
-            <div style={{ fontSize:16, fontWeight:700, color:C.text, marginBottom:14 }}>AI Picks for You ✦</div>
-            {results.map((ev,i)=>(
-              <div key={i} style={{ background:C.card, borderRadius:20, padding:"16px", marginBottom:12, border:`1px solid ${C.border}`, boxShadow:"0 2px 10px rgba(0,0,0,0.05)" }}>
-                <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", gap:8, marginBottom:8 }}>
-                  <div style={{ fontSize:16, fontWeight:700, color:C.text, flex:1 }}>{ev.name}</div>
-                  <MatchBadge score={ev.matchScore||ev.match||90}/>
-                </div>
-                <div style={{ fontSize:12, color:C.muted, marginBottom:8 }}>{ev.time} · {ev.distance}</div>
-                <div style={{ fontSize:13, color:C.muted, fontStyle:"italic", marginBottom:10, lineHeight:1.5 }}>"{ev.reason}"</div>
-                <div style={{ display:"flex", gap:6 }}>
-                  <Pill label={ev.vibe}/>
-                  <Pill label={`${ev.going} going`} bg={C.blueLight} color={C.blue}/>
-                </div>
-              </div>
+
+        {/* Social Mode Grid */}
+        <div className="mb-8 bg-white p-5 rounded-3xl border border-outline-variant/30 shadow-soft">
+          <h4 className="font-label-md text-sm text-on-background font-bold mb-3">Social Mode</h4>
+          <div className="grid grid-cols-3 gap-3">
+            {[{id:"Solo",icon:"👤",desc:"Just me"},{id:"Open",icon:"👥",desc:"Join squad"},{id:"Group",icon:"🎉",desc:"Large scene"}].map(m => (
+              <button 
+                key={m.id} 
+                onClick={() => setMode(m.id)} 
+                className={`p-3 rounded-2xl border flex flex-col items-center justify-center gap-1.5 transition-all duration-150 active:scale-95 ${
+                  mode === m.id 
+                    ? "border-primary bg-primary-container/30 text-primary font-bold shadow-sm" 
+                    : "border-outline-variant/50 bg-surface hover:bg-surface-container-low text-on-surface-variant"
+                }`}
+              >
+                <span className="text-xl">{m.icon}</span>
+                <span className="font-label-sm text-xs leading-none">{m.id}</span>
+                <span className="text-[9px] text-on-surface-variant/60 leading-none">{m.desc}</span>
+              </button>
             ))}
+          </div>
+        </div>
+
+        {/* Find Button */}
+        <button 
+          onClick={onFind} 
+          disabled={loading} 
+          className="w-full py-4 rounded-full bg-gradient-to-r from-primary via-tertiary to-secondary text-white font-label-md text-base font-extrabold transition-transform duration-150 active:scale-[0.98] shadow-md hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed mb-8"
+        >
+          {loading ? "✨ Calibrating matching waves..." : "Find my people ✨"}
+        </button>
+
+        {/* AI Recommendations List */}
+        {results && (
+          <div className="animate-fade-in">
+            <h3 className="font-headline-md text-base font-bold text-on-background mb-4">AI Picks for You &middot; Live</h3>
+            <div className="flex flex-col gap-4">
+              {results.map((ev, i) => (
+                <div 
+                  key={i} 
+                  className="bg-white rounded-3xl p-5 border border-outline-variant/30 shadow-soft hover:shadow-md transition-all duration-200"
+                >
+                  <div className="flex justify-between items-start gap-4 mb-2">
+                    <h4 className="font-headline-md text-[16px] font-bold text-on-background leading-snug flex-1">
+                      {ev.name}
+                    </h4>
+                    <div className="bg-primary-container text-on-primary-container rounded-full px-2.5 py-1 flex items-center gap-1 flex-shrink-0 border border-primary/10">
+                      <span className="material-symbols-outlined text-[12px]">psychology</span>
+                      <span className="font-label-sm text-[10px] font-bold">{ev.matchScore||ev.match||90}% Match</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-1.5 font-body-md text-xs text-on-surface-variant/60 mb-3">
+                    <span className="material-symbols-outlined text-[13px]">calendar_today</span>
+                    <span>{ev.time}</span>
+                    <span>&middot;</span>
+                    <span className="material-symbols-outlined text-[13px]">location_on</span>
+                    <span>{ev.distance}</span>
+                  </div>
+
+                  <p className="font-body-md text-xs italic text-on-surface-variant/80 bg-surface p-3 rounded-2xl border border-outline-variant/10 mb-4 leading-relaxed">
+                    "{ev.reason}"
+                  </p>
+
+                  <div className="flex gap-2 flex-wrap">
+                    <span className="font-label-sm text-[10px] px-2.5 py-1 rounded-full bg-secondary-container/50 text-on-secondary-container font-bold">
+                      {ev.vibe}
+                    </span>
+                    <span className="font-label-sm text-[10px] px-2.5 py-1 rounded-full bg-tertiary-container/50 text-on-tertiary-container font-bold">
+                      {ev.going} going
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>
@@ -461,50 +857,291 @@ function AuraScreen({ energy, setEnergy, intent, setIntent, mode, setMode, onFin
 
 function EventDetail({ event, onBack, reasons = [] }) {
   return (
-    <div style={{ height:"100%", overflowY:"auto", background:C.bg }}>
-      <div style={{ position:"relative", height:230, background:event.gradient, flexShrink:0 }}>
-        <button onClick={onBack} style={{ position:"absolute", top:14, left:14, width:36, height:36, borderRadius:"50%", background:"rgba(255,255,255,0.9)", border:"none", cursor:"pointer", fontSize:18, display:"flex", alignItems:"center", justifyContent:"center" }}>←</button>
-        <div style={{ position:"absolute", top:14, right:14, display:"flex", gap:8 }}>
-          {["❤️","↗️"].map((ic,i)=><button key={i} style={{ width:36, height:36, borderRadius:"50%", background:"rgba(255,255,255,0.9)", border:"none", cursor:"pointer", fontSize:16, display:"flex", alignItems:"center", justifyContent:"center" }}>{ic}</button>)}
+    <div className="h-full overflow-y-auto bg-surface pb-12 hide-scrollbar relative">
+      {/* Event Cover Image or Fallback Gradient */}
+      <div 
+        className="relative h-[240px] w-full bg-cover bg-center overflow-hidden flex-shrink-0"
+        style={{ backgroundImage: event.image ? `url(${event.image})` : event.gradient }}
+      >
+        {!event.image && <div className="absolute inset-0 bg-black/10"></div>}
+        
+        {/* Navigation Overlays */}
+        <button 
+          onClick={onBack} 
+          className="absolute top-4 left-4 w-9 h-9 rounded-full bg-white/80 backdrop-blur-md border border-outline-variant/30 flex items-center justify-center shadow-sm text-on-surface hover:bg-white active:scale-90 transition-transform"
+        >
+          <span className="material-symbols-outlined text-[20px]">arrow_back</span>
+        </button>
+
+        <div className="absolute top-4 right-4 flex gap-2">
+          <button className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-md border border-outline-variant/30 flex items-center justify-center shadow-sm text-on-surface hover:bg-white active:scale-90 transition-transform">
+            <span className="material-symbols-outlined text-[18px]">favorite</span>
+          </button>
+          <button className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-md border border-outline-variant/30 flex items-center justify-center shadow-sm text-on-surface hover:bg-white active:scale-90 transition-transform">
+            <span className="material-symbols-outlined text-[18px]">share</span>
+          </button>
         </div>
-        <div style={{ position:"absolute", bottom:14, left:14 }}><MatchBadge score={event.match||92}/></div>
+
+        {/* Match score overlay badge */}
+        <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md rounded-full px-3 py-1.5 flex items-center gap-1 shadow-sm border border-outline-variant/20">
+          <span className="material-symbols-outlined text-tertiary text-[15px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+            psychology
+          </span>
+          <span className="font-label-md text-xs font-bold text-on-surface">{event.match || 92}% Match</span>
+        </div>
       </div>
-      <div style={{ padding:"20px" }}>
-        <div style={{ fontSize:26, fontWeight:800, color:C.text, letterSpacing:-0.8, marginBottom:6, lineHeight:1.2 }}>{event.name}</div>
-        <div style={{ fontSize:13, color:C.muted, marginBottom:14 }}>{event.time} · {event.distance}</div>
-        <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:20 }}>{(event.tags||["Social","Outdoor"]).map(t=><Pill key={t} label={t}/>)}</div>
-        <div style={{ background:C.card, borderRadius:20, padding:"16px", marginBottom:14, border:`1px solid ${C.border}` }}>
-          <div style={{ fontSize:14, fontWeight:700, color:C.text, marginBottom:12 }}>Squad ({event.going||5} going)</div>
-          <div style={{ display:"flex", gap:4 }}>
-            {["Maya","Alex","Jordan","Sam","Casey"].map((n,i)=><Av key={i} name={n} size={36}/>)}
-            <div style={{ width:36, height:36, borderRadius:"50%", background:C.purpleLight, border:"2px solid white", display:"flex", alignItems:"center", justifyContent:"center", fontSize:11, fontWeight:700, color:C.purple }}>+2</div>
+
+      <div className="p-6 relative z-10">
+        {/* Title & Metadata */}
+        <h2 className="font-display-lg text-2xl font-extrabold text-on-background tracking-tight leading-tight mb-2">
+          {event.name}
+        </h2>
+        <div className="flex items-center gap-1.5 font-body-md text-xs text-on-surface-variant/70 mb-5">
+          <span className="material-symbols-outlined text-[14px]">calendar_today</span>
+          <span>{event.time}</span>
+          <span className="mx-1">&middot;</span>
+          <span className="material-symbols-outlined text-[14px]">location_on</span>
+          <span>{event.distance}</span>
+        </div>
+
+        {/* Tags */}
+        <div className="flex gap-1.5 flex-wrap mb-6">
+          {(event.tags || ["Social", "Outdoor"]).map(t => (
+            <span key={t} className="font-label-sm text-[10px] px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant/80 border border-outline-variant/20 font-bold">
+              {t}
+            </span>
+          ))}
+        </div>
+
+        {/* Squad Attendance Grid */}
+        <div className="bg-white rounded-3xl p-5 border border-outline-variant/30 shadow-soft mb-5">
+          <h4 className="font-label-md text-sm text-on-background font-bold mb-3 flex items-center gap-1.5">
+            <span className="material-symbols-outlined text-primary text-[18px]">groups</span>
+            Squad ({event.going || 5} going)
+          </h4>
+          <div className="flex gap-2 items-center">
+            {["Maya", "Alex", "Jordan", "Sam", "Casey"].map((n, i) => (
+              <Av key={i} name={n} size={38} />
+            ))}
+            <div className="w-[38px] h-[38px] rounded-full bg-primary-container border-2 border-white flex items-center justify-center font-label-sm text-[10px] font-bold text-primary shadow-sm flex-shrink-0">
+              +2
+            </div>
           </div>
         </div>
-        <div style={{ background:C.greenLight, borderRadius:20, padding:"16px", marginBottom:14, border:"1px solid #86EFAC" }}>
-          <div style={{ fontSize:13, fontWeight:700, color:"#15803D", marginBottom:10 }}>Why this is a great match</div>
-          {(reasons.length > 0
-            ? reasons
-            : ["You both like social, low pressure vibes","Similar energy levels","Group size fits your preference"]
-          ).map((r,i)=>(
-            <div key={i} style={{ display:"flex", gap:8, alignItems:"flex-start", marginBottom:7 }}>
-              <span style={{ color:C.green, fontWeight:700, fontSize:14 }}>✓</span>
-              <span style={{ fontSize:13, color:"#166534", lineHeight:1.4 }}>{r}</span>
-            </div>
-          ))}
+
+        {/* Match Scoring Insights */}
+        <div className="bg-green-50/70 rounded-3xl p-5 border border-green-200/50 mb-5">
+          <h4 className="font-label-md text-sm text-green-800 font-bold mb-3 flex items-center gap-1.5">
+            <span className="material-symbols-outlined text-green-700 text-[18px]">verified</span>
+            Why this is a great match
+          </h4>
+          <div className="flex flex-col gap-2.5">
+            {(reasons.length > 0
+              ? reasons
+              : [
+                  "You both like social, low pressure vibes",
+                  "Similar energy levels (Warm / Active)",
+                  "Group size matches your preference"
+                ]
+            ).map((r, i) => (
+              <div key={i} className="flex gap-2 items-start">
+                <span className="text-green-600 font-bold text-sm leading-none mt-0.5">✓</span>
+                <span className="font-body-md text-xs text-green-800/90 leading-relaxed">{r}</span>
+              </div>
+            ))}
+          </div>
         </div>
-        <div style={{ background:C.card, borderRadius:20, padding:"16px", marginBottom:24, border:`1px solid ${C.border}` }}>
-          <div style={{ fontSize:14, fontWeight:700, color:C.text, marginBottom:12 }}>Chat preview</div>
-          {[{n:"Maya",m:"Can't wait! The weather looks perfect 🌤️",t:"2m ago"},{n:"Alex",m:"Anyone coming from nearby?",t:"3m ago"}].map((msg,i)=>(
-            <div key={i} style={{ display:"flex", gap:10, marginBottom:12 }}>
-              <Av name={msg.n} size={32}/>
-              <div>
-                <div style={{ fontSize:12, fontWeight:600, color:C.text }}>{msg.n} <span style={{ color:C.muted, fontWeight:400 }}>{msg.t}</span></div>
-                <div style={{ fontSize:13, color:C.text, marginTop:2, lineHeight:1.4 }}>{msg.m}</div>
+
+        {/* Chat Preview */}
+        <div className="bg-white rounded-3xl p-5 border border-outline-variant/30 shadow-soft mb-6">
+          <h4 className="font-label-md text-sm text-on-background font-bold mb-4 flex items-center gap-1.5">
+            <span className="material-symbols-outlined text-tertiary text-[18px]">chat</span>
+            Chat Preview
+          </h4>
+          <div className="flex flex-col gap-4">
+            {[
+              { n: "Maya", m: "Can't wait! The weather looks perfect 🌤️", t: "2m ago" },
+              { n: "Alex", m: "Anyone coming from nearby?", t: "3m ago" }
+            ].map((msg, i) => (
+              <div key={i} className="flex gap-3">
+                <Av name={msg.n} size={34} />
+                <div className="flex-1">
+                  <div className="flex justify-between items-center">
+                    <span className="font-label-md text-xs text-on-background font-bold">{msg.n}</span>
+                    <span className="font-label-sm text-[10px] text-on-surface-variant/50">{msg.t}</span>
+                  </div>
+                  <p className="font-body-md text-xs text-on-surface-variant/90 mt-1 leading-snug">
+                    {msg.m}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Main CTA */}
+        <button className="w-full py-4 rounded-full bg-gradient-to-r from-primary via-tertiary to-secondary text-white font-label-md text-base font-extrabold transition-transform duration-150 active:scale-[0.98] shadow-md hover:opacity-95 flex items-center justify-center gap-2">
+          <span className="material-symbols-outlined text-[20px]">person_add</span>
+          Join Squad
+        </button>
+      </div>
+    </div>
+  );
+}
+function AuraChatScreen({ userProfile, onProfileUpdate }) {
+  const [messages, setMessages] = useState([
+    {
+      role: "assistant",
+      text: "Hey! I'm Aura 👋 I know you from your onboarding, but the more you share, the better I can match you. What's on your mind tonight?",
+      time: "now"
+    }
+  ]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const suggestions = [
+    "I'm feeling low-key tonight",
+    "I want to meet new people",
+    "Looking for something creative",
+    "Update my food preferences",
+    "I prefer small groups",
+  ];
+
+  const sendMessage = async (text) => {
+    if (!text.trim()) return;
+    const userMsg = { role: "user", text, time: "now" };
+    setMessages(prev => [...prev, userMsg]);
+    setInput("");
+    setLoading(true);
+
+    // Simulate Aura AI response
+    await new Promise(r => setTimeout(r, 1000 + Math.random() * 600));
+    
+    const lowerText = text.toLowerCase();
+    let response = "";
+    
+    if (lowerText.includes("low-key") || lowerText.includes("chill") || lowerText.includes("quiet")) {
+      response = "Got it — I'll tune your vibe to \"Chill Explorer\" mode. I'll prioritize smaller, more intimate events with a relaxed atmosphere. Anything else about your mood tonight?";
+    } else if (lowerText.includes("meet") || lowerText.includes("people") || lowerText.includes("social")) {
+      response = "Love that energy! I'll bump up your Social Connector score and look for events with active mingling and new faces. Do you prefer structured activities or free-form social settings?";
+    } else if (lowerText.includes("creative") || lowerText.includes("art") || lowerText.includes("paint")) {
+      response = "Creative mode activated 🎨 I'll weight art, music, and maker events more heavily for you. Wine & Paint Evening tonight is a 94% match based on this — want me to pull it up?";
+    } else if (lowerText.includes("food") || lowerText.includes("eat") || lowerText.includes("dinner") || lowerText.includes("brunch")) {
+      response = "Yum! I'll make food-forward events your top priority. I see Rooftop Brunch & Beats and Garden Dinner Party scoring high for you right now. Want details on either?";
+    } else if (lowerText.includes("small") || lowerText.includes("group") || lowerText.includes("intimate")) {
+      response = "Noted — I'll filter for events under 15 people so you can actually connect rather than get lost in a crowd. This will adjust your newcomer-friendliness score too.";
+    } else if (lowerText.includes("distance") || lowerText.includes("far") || lowerText.includes("walk")) {
+      response = "I'll tighten your distance filter. Walking distance only — so within about half a mile. That narrows tonight's picks but keeps things easy. Sound right?";
+    } else if (lowerText.includes("yes") || lowerText.includes("sure") || lowerText.includes("ok")) {
+      response = "Perfect! I've updated your Aura profile. Head back to Discover to see your freshly tuned picks 🌟";
+    } else if (lowerText.includes("how") || lowerText.includes("work") || lowerText.includes("what")) {
+      response = "I analyze your energy level, social intent, interests, and past patterns to score every event 0–100. The higher the match, the more aligned it is with who you are right now — not just what you usually do. Tell me something about tonight and I'll calibrate in real time.";
+    } else {
+      const fallbacks = [
+        "Interesting! Tell me more — are you in the mood for something energetic or low-key tonight?",
+        "I'm picking up on that vibe. Would you say you want to meet new people, or hang with familiar faces?",
+        "Got it. Are you feeling more creative, active, or social right now?",
+        "I hear you. What would make tonight feel perfect — great food, great people, or a great atmosphere?",
+      ];
+      response = fallbacks[Math.floor(Math.random() * fallbacks.length)];
+    }
+    
+    setMessages(prev => [...prev, { role: "assistant", text: response, time: "now" }]);
+    setLoading(false);
+  };
+
+  return (
+    <div className="h-full flex flex-col bg-surface relative">
+      {/* Ambient glows */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-[5%] right-[-10%] w-[200px] h-[200px] aura-gradient rounded-full blur-[50px] opacity-50"></div>
+        <div className="absolute bottom-[20%] left-[-10%] w-[180px] h-[180px] aura-gradient rounded-full blur-[45px] opacity-35"></div>
+      </div>
+
+      {/* Header */}
+      <div className="relative z-10 px-6 pt-5 pb-3 flex items-center gap-3 border-b border-outline-variant/20">
+        <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-primary via-tertiary to-secondary flex items-center justify-center shadow-md flex-shrink-0">
+          <img src="logo.png" alt="Aura" className="w-7 h-7 object-contain" onError={(e)=>{e.target.style.display='none';e.target.parentElement.innerHTML='<span class="material-symbols-outlined text-white text-[20px]" style="font-variation-settings:\'FILL\' 1">psychology</span>';}} />
+        </div>
+        <div className="flex-1">
+          <h2 className="font-display-lg text-base font-extrabold text-on-background tracking-tight leading-none">Aura AI</h2>
+          <p className="font-body-md text-[10px] text-on-surface-variant/70 mt-0.5">Your personal social compass</p>
+        </div>
+        <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-green-50 border border-green-200/60">
+          <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+          <span className="font-label-sm text-[9px] font-bold text-green-700">Live</span>
+        </div>
+      </div>
+
+      {/* Chat Messages */}
+      <div className="relative z-10 flex-1 overflow-y-auto px-5 py-4 hide-scrollbar flex flex-col gap-4">
+        {messages.map((msg, i) => (
+          <div key={i} className={`flex gap-2.5 items-end ${msg.role === "user" ? "flex-row-reverse" : ""}`}>
+            {msg.role === "assistant" && (
+              <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-primary via-tertiary to-secondary flex-shrink-0 flex items-center justify-center shadow-sm overflow-hidden">
+                <img src="logo.png" alt="" className="w-5 h-5 object-contain" onError={(e)=>{e.target.style.display='none';}} />
+              </div>
+            )}
+            <div className={`max-w-[75%] px-4 py-3 rounded-2xl font-body-md text-xs leading-relaxed shadow-sm ${
+              msg.role === "user"
+                ? "bg-gradient-to-r from-primary to-tertiary text-white rounded-br-sm"
+                : "bg-white border border-outline-variant/25 text-on-background rounded-bl-sm"
+            }`}>
+              {msg.text}
+            </div>
+          </div>
+        ))}
+        {loading && (
+          <div className="flex gap-2.5 items-end">
+            <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-primary via-tertiary to-secondary flex-shrink-0 flex items-center justify-center shadow-sm">
+              <img src="logo.png" alt="" className="w-5 h-5 object-contain" onError={(e)=>{e.target.style.display='none';}} />
+            </div>
+            <div className="bg-white border border-outline-variant/25 rounded-2xl rounded-bl-sm px-4 py-3 shadow-sm">
+              <div className="flex gap-1">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary/60 animate-bounce" style={{animationDelay:"0ms"}}></div>
+                <div className="w-1.5 h-1.5 rounded-full bg-tertiary/60 animate-bounce" style={{animationDelay:"150ms"}}></div>
+                <div className="w-1.5 h-1.5 rounded-full bg-secondary/60 animate-bounce" style={{animationDelay:"300ms"}}></div>
               </div>
             </div>
-          ))}
+          </div>
+        )}
+      </div>
+
+      {/* Quick Suggestions */}
+      {messages.length <= 2 && (
+        <div className="relative z-10 px-5 pb-2">
+          <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-1">
+            {suggestions.map((s, i) => (
+              <button
+                key={i}
+                onClick={() => sendMessage(s)}
+                className="flex-shrink-0 px-3 py-1.5 rounded-full bg-white border border-outline-variant/40 font-label-sm text-[10px] text-on-surface-variant font-bold hover:border-primary hover:text-primary transition-colors active:scale-95"
+              >
+                {s}
+              </button>
+            ))}
+          </div>
         </div>
-        <button style={{ width:"100%", padding:"17px", borderRadius:30, background:`linear-gradient(135deg, ${C.purple}, ${C.blue})`, color:"white", fontWeight:800, fontSize:17, border:"none", cursor:"pointer" }}>Join Squad 👥</button>
+      )}
+
+      {/* Input Bar */}
+      <div className="relative z-10 px-4 pb-28 pt-2 border-t border-outline-variant/20">
+        <div className="flex gap-2 items-end bg-white rounded-2xl border border-outline-variant/40 shadow-soft px-4 py-2.5">
+          <textarea
+            value={input}
+            onChange={e => setInput(e.target.value)}
+            onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(input); } }}
+            placeholder="Tell Aura about your vibe tonight..."
+            className="flex-1 resize-none text-xs font-body-md text-on-background bg-transparent outline-none leading-relaxed placeholder-on-surface-variant/40 max-h-20"
+            rows={1}
+          />
+          <button
+            onClick={() => sendMessage(input)}
+            disabled={!input.trim() || loading}
+            className="w-8 h-8 rounded-xl bg-gradient-to-tr from-primary to-tertiary text-white flex items-center justify-center flex-shrink-0 disabled:opacity-40 transition-all active:scale-90 shadow-sm"
+          >
+            <span className="material-symbols-outlined text-[16px]">send</span>
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -512,123 +1149,594 @@ function EventDetail({ event, onBack, reasons = [] }) {
 
 function PulseScreen() {
   const sigs = [
-    { icon:"🔥", color:C.coral, bg:"#FFF0EB", title:"New Match Signal", sub:"You + 3 others have a high match tonight", type:"Match" },
-    { icon:"⚡", color:C.gold, bg:"#FFF9EB", title:"Hotspot Alert", sub:"Downtown is heating up · Right now", type:"Alert" },
-    { icon:"👥", color:C.purple, bg:C.purpleLight, title:"Squad Forming", sub:"A squad with 91% match is forming near you", type:"Squad" },
-    { icon:"💬", color:C.blue, bg:C.blueLight, title:"Warmup Response", sub:'Maya answered: "Best part of a perfect day?"', type:"Chat" },
+    { icon:"local_fire_department", color: "text-tertiary", bg:"bg-tertiary-container/30", title:"New Match Signal", sub:"You + 3 others have a high match tonight", type:"Match" },
+    { icon:"bolt", color: "text-secondary", bg:"bg-secondary-container/30", title:"Hotspot Alert", sub:"Downtown is heating up &bull; Right now", type:"Alert" },
+    { icon:"groups", color: "text-primary", bg:"bg-primary-container/30", title:"Squad Forming", sub:"A squad with 91% match is forming near you", type:"Squad" },
+    { icon:"chat", color: "text-blue-600", bg:"bg-blue-50", title:"Warmup Response", sub:'Maya answered: "Best part of a perfect day?"', type:"Chat" },
   ];
   return (
-    <div style={{ height:"100%", overflowY:"auto", background:C.bg, paddingBottom:12 }}>
-      <div style={{ padding:"14px 20px" }}>
-        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:18 }}>
-          <div style={{ fontSize:24, fontWeight:800, color:C.text, letterSpacing:-0.5 }}>Pulse</div>
-          <button style={{ background:"none", border:`1px solid ${C.border}`, borderRadius:20, padding:"6px 14px", fontSize:13, cursor:"pointer", color:C.text }}>⚙️ Filter</button>
+    <div className="h-full overflow-y-auto bg-surface pb-28 hide-scrollbar relative">
+      {/* Ambient background glows */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-[10%] left-[-10%] w-[220px] h-[220px] aura-gradient rounded-full blur-[50px] opacity-50"></div>
+        <div className="absolute bottom-[10%] right-[-10%] w-[240px] h-[240px] aura-gradient rounded-full blur-[60px] opacity-40"></div>
+      </div>
+
+      <div className="relative z-10 p-6">
+        {/* Header */}
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="font-display-lg text-2xl font-extrabold text-on-background tracking-tight">Pulse</h2>
+          <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-outline-variant/60 font-label-md text-xs text-on-surface hover:bg-surface-container-low active:scale-95 transition-transform shadow-sm">
+            <span className="material-symbols-outlined text-[15px]">tune</span>
+            Filter
+          </button>
         </div>
-        <div style={{ fontSize:11, fontWeight:700, color:C.muted, letterSpacing:1.2, marginBottom:12, textTransform:"uppercase" }}>Live signals for you</div>
-        {sigs.map((s,i)=>(
-          <div key={i} style={{ background:C.card, borderRadius:20, padding:"16px", marginBottom:12, border:`1px solid ${C.border}`, display:"flex", gap:14, alignItems:"flex-start", cursor:"pointer" }}>
-            <div style={{ width:46, height:46, borderRadius:14, background:s.bg, display:"flex", alignItems:"center", justifyContent:"center", fontSize:22, flexShrink:0 }}>{s.icon}</div>
-            <div style={{ flex:1 }}>
-              <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:4 }}>
-                <div style={{ fontSize:14, fontWeight:700, color:C.text }}>{s.title}</div>
-                <span style={{ fontSize:10, background:s.bg, color:s.color, borderRadius:20, padding:"2px 8px", fontWeight:700 }}>{s.type}</span>
+
+        {/* Signals Section */}
+        <div className="mb-8">
+          <h4 className="font-label-sm text-[10px] uppercase font-bold text-on-surface-variant/60 tracking-wider mb-4">
+            Live signals for you
+          </h4>
+          <div className="flex flex-col gap-4">
+            {sigs.map((s, i) => (
+              <div key={i} className="bg-white rounded-3xl p-5 border border-outline-variant/30 shadow-soft flex gap-4 items-start active:scale-[0.99] transition-all hover:shadow-md cursor-pointer">
+                <div className={`w-11 h-11 rounded-2xl ${s.bg} flex items-center justify-center flex-shrink-0`}>
+                  <span className={`material-symbols-outlined ${s.color} text-[22px]`}>
+                    {s.icon}
+                  </span>
+                </div>
+                <div className="flex-1">
+                  <div className="flex justify-between items-start gap-2 mb-1">
+                    <h5 className="font-headline-md text-sm font-bold text-on-background">{s.title}</h5>
+                    <span className={`font-label-sm text-[9px] font-bold px-2 py-0.5 rounded-full ${s.bg} ${s.color}`}>
+                      {s.type}
+                    </span>
+                  </div>
+                  <p className="font-body-md text-xs text-on-surface-variant/80 mb-3 leading-snug" dangerouslySetInnerHTML={{ __html: s.sub }} />
+                  <div className="flex gap-2">
+                    <button className="px-4 py-1.5 rounded-full bg-primary text-surface font-label-sm text-[10px] font-bold shadow-sm transition-transform active:scale-95">
+                      Answer
+                    </button>
+                    <button className="px-4 py-1.5 rounded-full bg-surface text-on-surface-variant border border-outline-variant/50 font-label-sm text-[10px] font-bold transition-transform active:scale-95">
+                      Skip
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div style={{ fontSize:12, color:C.muted, marginBottom:10, lineHeight:1.45 }}>{s.sub}</div>
-              <div style={{ display:"flex", gap:8 }}>
-                {["Answer","Skip"].map((l,j)=>(
-                  <button key={j} style={{ padding:"6px 16px", borderRadius:20, border:j===1?`1px solid ${C.border}`:"none", background:j===0?C.purple:"transparent", color:j===0?"white":C.muted, fontWeight:600, fontSize:12, cursor:"pointer" }}>{l}</button>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
-        ))}
-        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14, marginTop:4 }}>
-          <span style={{ fontSize:15, fontWeight:700, color:C.text }}>Warmups</span>
-          <span style={{ fontSize:13, color:C.purple, fontWeight:600 }}>See all</span>
         </div>
-        {["Maya","Jordan"].map((name,i)=>(
-          <div key={i} style={{ background:C.card, borderRadius:20, padding:"14px 16px", marginBottom:10, border:`1px solid ${C.border}`, display:"flex", alignItems:"center", gap:12, cursor:"pointer" }}>
-            <Av name={name} size={42}/>
-            <div style={{ flex:1 }}>
-              <div style={{ fontSize:13, fontWeight:600, color:C.text }}>You and {name} both chose</div>
-              <div style={{ fontSize:12, color:C.muted, marginTop:2 }}>"creative people &amp; good food"</div>
-              <div style={{ fontSize:11, color:C.purple, marginTop:4, fontWeight:600 }}>What's a hidden gem you love here?</div>
-            </div>
-            <span style={{ fontSize:18, color:C.muted }}>→</span>
+
+        {/* Warmups Section */}
+        <div>
+          <div className="flex justify-between items-center mb-4">
+            <span className="font-headline-md text-base font-bold text-on-background">Warmups</span>
+            <span className="font-label-md text-xs text-primary font-bold hover:underline cursor-pointer">See all</span>
           </div>
-        ))}
+
+          <div className="flex flex-col gap-3">
+            {["Maya", "Jordan"].map((name, i) => (
+              <div key={i} className="bg-white rounded-3xl p-4 border border-outline-variant/30 shadow-soft flex items-center gap-4 cursor-pointer hover:border-primary active:scale-[0.99] transition-all group">
+                <Av name={name} size={40} />
+                <div className="flex-1 min-w-0">
+                  <div className="font-label-md text-xs text-on-background font-bold group-hover:text-primary transition-colors">
+                    You and {name} both chose
+                  </div>
+                  <div className="font-body-md text-[11px] text-on-surface-variant/70 truncate mt-0.5">
+                    "creative people &amp; good food"
+                  </div>
+                  <div className="font-label-sm text-[10px] text-primary font-bold mt-1.5 flex items-center gap-1">
+                    <span className="material-symbols-outlined text-[12px]">chat_bubble</span>
+                    What's a hidden gem you love here?
+                  </div>
+                </div>
+                <span className="material-symbols-outlined text-on-surface-variant/40 group-hover:translate-x-0.5 transition-transform text-[18px]">
+                  arrow_forward
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
-function ProfileScreen() {
-  return (
-    <div style={{ height:"100%", overflowY:"auto", background:C.bg, paddingBottom:12 }}>
-      <div style={{ padding:"14px 20px" }}>
-        <div style={{ display:"flex", justifyContent:"flex-end", marginBottom:16 }}>
-          <button style={{ background:"none", border:"none", fontSize:20, cursor:"pointer" }}>⚙️</button>
+function HostEventScreen({ onBack }) {
+  const [step, setStep] = useState(0);
+  const [form, setForm] = useState({ name:"", type:"Social", date:"", time:"", location:"", maxSize:"10", description:"" });
+  const eventTypes = ["Social", "Food & Drinks", "Music", "Art & Creative", "Outdoor", "Games"];
+
+  if (step === 2) {
+    return (
+      <div className="h-full flex flex-col items-center justify-center bg-surface p-8 text-center relative">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+          <div className="absolute top-[-5%] right-[-10%] w-[220px] h-[220px] aura-gradient rounded-full blur-[50px] opacity-50"></div>
         </div>
-        <div style={{ display:"flex", flexDirection:"column", alignItems:"center", marginBottom:24 }}>
-          <div style={{ position:"relative", marginBottom:12 }}>
-            <div style={{ width:88, height:88, borderRadius:"50%", background:`linear-gradient(135deg, ${C.purpleMid}, ${C.purple}, ${C.blue})`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:34, color:"white", fontWeight:800 }}>L</div>
-            <button style={{ position:"absolute", bottom:0, right:0, width:28, height:28, borderRadius:"50%", background:C.purple, border:"2px solid white", fontSize:12, cursor:"pointer", color:"white", display:"flex", alignItems:"center", justifyContent:"center" }}>✎</button>
+        <div className="relative z-10 flex flex-col items-center">
+          <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-primary via-tertiary to-secondary flex items-center justify-center mb-6 shadow-lg">
+            <span className="material-symbols-outlined text-white text-[40px]" style={{fontVariationSettings:"'FILL' 1"}}>check_circle</span>
           </div>
-          <div style={{ fontSize:22, fontWeight:800, color:C.text, letterSpacing:-0.5 }}>Likhith</div>
-          <div style={{ display:"inline-flex", alignItems:"center", gap:5, background:C.purpleLight, borderRadius:20, padding:"5px 12px", marginTop:6, fontSize:12, fontWeight:700, color:C.purple }}>✦ Chill Explorer</div>
+          <h2 className="font-display-lg text-2xl font-extrabold text-on-background mb-3 tracking-tight">Event Created!</h2>
+          <p className="font-body-md text-sm text-on-surface-variant/80 mb-8 leading-relaxed">
+            <strong>{form.name}</strong> is live. Aura will start matching attendees based on vibe compatibility.
+          </p>
+          <button onClick={onBack} className="w-full py-4 rounded-full bg-gradient-to-r from-primary via-tertiary to-secondary text-white font-label-md text-sm font-extrabold active:scale-[0.98] transition-all shadow-md">
+            Back to Discover
+          </button>
         </div>
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:10, marginBottom:22 }}>
-          {[{label:"Squads Joined",val:"12"},{label:"Great Matches",val:"8"},{label:"Success Rate",val:"92%"}].map(s=>(
-            <div key={s.label} style={{ background:C.card, borderRadius:18, padding:"16px 12px", textAlign:"center", border:`1px solid ${C.border}` }}>
-              <div style={{ fontSize:22, fontWeight:800, color:C.text }}>{s.val}</div>
-              <div style={{ fontSize:10, color:C.muted, marginTop:3, lineHeight:1.4 }}>{s.label}</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="h-full overflow-y-auto bg-surface pb-8 hide-scrollbar relative">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-[-5%] right-[-10%] w-[200px] h-[200px] aura-gradient rounded-full blur-[50px] opacity-40"></div>
+      </div>
+
+      <div className="relative z-10 p-6">
+        {/* Header */}
+        <div className="flex items-center gap-4 mb-6">
+          <button onClick={onBack} className="w-9 h-9 rounded-full bg-white border border-outline-variant/60 flex items-center justify-center shadow-sm active:scale-90 transition-transform">
+            <span className="material-symbols-outlined text-[20px]">arrow_back</span>
+          </button>
+          <h2 className="font-display-lg text-xl font-extrabold text-on-background tracking-tight">Host an Event</h2>
+        </div>
+
+        {/* Step indicator */}
+        <div className="flex gap-2 mb-6">
+          {[0,1].map(s => (
+            <div key={s} className={`h-1 flex-1 rounded-full transition-all ${s <= step ? "bg-primary" : "bg-outline-variant/40"}`} />
+          ))}
+        </div>
+
+        {step === 0 && (
+          <div className="flex flex-col gap-5">
+            <h3 className="font-headline-md text-base font-bold text-on-background">Event Details</h3>
+            <div>
+              <label className="font-label-sm text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider mb-1.5 block">Event Name</label>
+              <input
+                type="text"
+                placeholder="e.g. Rooftop Sunset Hangout"
+                value={form.name}
+                onChange={e => setForm({...form, name: e.target.value})}
+                className="w-full px-4 py-3 rounded-2xl bg-white border border-outline-variant/40 font-body-md text-sm text-on-background outline-none focus:border-primary transition-colors"
+              />
+            </div>
+            <div>
+              <label className="font-label-sm text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider mb-2 block">Event Type</label>
+              <div className="flex flex-wrap gap-2">
+                {eventTypes.map(t => (
+                  <button key={t} onClick={() => setForm({...form, type: t})}
+                    className={`px-3 py-1.5 rounded-full font-label-sm text-[11px] font-bold transition-all active:scale-95 border ${form.type === t ? "bg-primary text-white border-primary shadow-sm" : "bg-white text-on-surface-variant border-outline-variant/40"}`}>
+                    {t}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="font-label-sm text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider mb-1.5 block">Date</label>
+                <input type="date" value={form.date} onChange={e => setForm({...form, date: e.target.value})}
+                  className="w-full px-3 py-2.5 rounded-2xl bg-white border border-outline-variant/40 font-body-md text-xs text-on-background outline-none focus:border-primary" />
+              </div>
+              <div>
+                <label className="font-label-sm text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider mb-1.5 block">Time</label>
+                <input type="time" value={form.time} onChange={e => setForm({...form, time: e.target.value})}
+                  className="w-full px-3 py-2.5 rounded-2xl bg-white border border-outline-variant/40 font-body-md text-xs text-on-background outline-none focus:border-primary" />
+              </div>
+            </div>
+            <div>
+              <label className="font-label-sm text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider mb-1.5 block">Location</label>
+              <input type="text" placeholder="Add address or venue name" value={form.location} onChange={e => setForm({...form, location: e.target.value})}
+                className="w-full px-4 py-3 rounded-2xl bg-white border border-outline-variant/40 font-body-md text-sm text-on-background outline-none focus:border-primary transition-colors" />
+            </div>
+            <button onClick={() => setStep(1)} disabled={!form.name.trim()}
+              className="w-full py-4 rounded-full bg-gradient-to-r from-primary to-tertiary text-white font-label-md text-sm font-extrabold active:scale-[0.98] transition-all shadow-md disabled:opacity-40 mt-2">
+              Continue
+            </button>
+          </div>
+        )}
+
+        {step === 1 && (
+          <div className="flex flex-col gap-5">
+            <h3 className="font-headline-md text-base font-bold text-on-background">Vibe Settings</h3>
+            <div>
+              <label className="font-label-sm text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider mb-1.5 block">Max Group Size: {form.maxSize} people</label>
+              <input type="range" min="3" max="50" value={form.maxSize} onChange={e => setForm({...form, maxSize: e.target.value})}
+                className="w-full accent-primary h-1.5 rounded-lg appearance-none cursor-pointer" />
+              <div className="flex justify-between mt-1">
+                <span className="font-label-sm text-[9px] text-on-surface-variant/50">Intimate (3)</span>
+                <span className="font-label-sm text-[9px] text-on-surface-variant/50">Large (50)</span>
+              </div>
+            </div>
+            <div>
+              <label className="font-label-sm text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider mb-1.5 block">Description</label>
+              <textarea placeholder="Describe the vibe, what to bring, or what to expect..." value={form.description} onChange={e => setForm({...form, description: e.target.value})}
+                rows={3} className="w-full px-4 py-3 rounded-2xl bg-white border border-outline-variant/40 font-body-md text-sm text-on-background outline-none focus:border-primary resize-none transition-colors" />
+            </div>
+            <div className="bg-primary-container/40 rounded-2xl p-4 border border-primary/15">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="material-symbols-outlined text-primary text-[16px]" style={{fontVariationSettings:"'FILL' 1"}}>psychology</span>
+                <span className="font-label-md text-xs font-bold text-primary">Aura Matching</span>
+              </div>
+              <p className="font-body-md text-[11px] text-on-background/80 leading-relaxed">
+                Aura will automatically match attendees based on vibe compatibility, energy levels, and social preferences.
+              </p>
+            </div>
+            <div className="flex gap-3">
+              <button onClick={() => setStep(0)} className="flex-1 py-3.5 rounded-full bg-white border border-outline-variant/40 text-on-surface font-label-md text-sm font-bold active:scale-[0.98] transition-all">
+                Back
+              </button>
+              <button onClick={() => setStep(2)} className="flex-[2] py-3.5 rounded-full bg-gradient-to-r from-primary to-tertiary text-white font-label-md text-sm font-extrabold active:scale-[0.98] transition-all shadow-md">
+                Create Event
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function PostSignalScreen({ onBack }) {
+  const [selectedVibe, setSelectedVibe] = useState(null);
+  const [message, setMessage] = useState("");
+  const [posted, setPosted] = useState(false);
+
+  const vibes = [
+    { id:"chill", emoji:"🌙", label:"Chill", color:"bg-blue-50 border-blue-200 text-blue-700", active:"bg-blue-500 text-white border-blue-500" },
+    { id:"social", emoji:"⚡", label:"Social", color:"bg-yellow-50 border-yellow-200 text-yellow-700", active:"bg-yellow-500 text-white border-yellow-500" },
+    { id:"explore", emoji:"🧭", label:"Explore", color:"bg-green-50 border-green-200 text-green-700", active:"bg-green-600 text-white border-green-600" },
+    { id:"creative", emoji:"🎨", label:"Creative", color:"bg-purple-50 border-purple-200 text-purple-700", active:"bg-purple-600 text-white border-purple-600" },
+    { id:"food", emoji:"🍜", label:"Food Mood", color:"bg-orange-50 border-orange-200 text-orange-700", active:"bg-orange-500 text-white border-orange-500" },
+    { id:"music", emoji:"🎵", label:"Music", color:"bg-pink-50 border-pink-200 text-pink-700", active:"bg-pink-600 text-white border-pink-600" },
+  ];
+
+  if (posted) {
+    return (
+      <div className="h-full flex flex-col items-center justify-center bg-surface p-8 text-center relative">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+          <div className="absolute top-[5%] right-[-10%] w-[220px] h-[220px] aura-gradient rounded-full blur-[50px] opacity-50"></div>
+        </div>
+        <div className="relative z-10 flex flex-col items-center">
+          <div className="text-5xl mb-5">{vibes.find(v=>v.id===selectedVibe)?.emoji || "✨"}</div>
+          <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-primary via-tertiary to-secondary flex items-center justify-center mb-6 shadow-lg">
+            <span className="material-symbols-outlined text-white text-[30px]" style={{fontVariationSettings:"'FILL' 1"}}>local_fire_department</span>
+          </div>
+          <h2 className="font-display-lg text-2xl font-extrabold text-on-background mb-3 tracking-tight">Signal Posted!</h2>
+          <p className="font-body-md text-sm text-on-surface-variant/80 mb-2 leading-relaxed">
+            Nearby people with a matching vibe will see your signal for the next 3 hours.
+          </p>
+          <div className="bg-primary-container/50 rounded-2xl px-4 py-2 mb-8">
+            <span className="font-label-md text-xs text-primary font-bold">Aura is scanning for matches...</span>
+          </div>
+          <button onClick={onBack} className="w-full py-4 rounded-full bg-gradient-to-r from-primary via-tertiary to-secondary text-white font-label-md text-sm font-extrabold active:scale-[0.98] transition-all shadow-md">
+            Back to Discover
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="h-full overflow-y-auto bg-surface pb-8 hide-scrollbar relative">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute bottom-[10%] left-[-10%] w-[200px] h-[200px] aura-gradient rounded-full blur-[50px] opacity-40"></div>
+      </div>
+
+      <div className="relative z-10 p-6">
+        {/* Header */}
+        <div className="flex items-center gap-4 mb-6">
+          <button onClick={onBack} className="w-9 h-9 rounded-full bg-white border border-outline-variant/60 flex items-center justify-center shadow-sm active:scale-90 transition-transform">
+            <span className="material-symbols-outlined text-[20px]">arrow_back</span>
+          </button>
+          <h2 className="font-display-lg text-xl font-extrabold text-on-background tracking-tight">Post a Signal</h2>
+        </div>
+
+        <p className="font-body-md text-sm text-on-surface-variant/70 mb-6 leading-relaxed">
+          Let nearby people know what vibe you're in. Aura will match you with others who are feeling the same way right now.
+        </p>
+
+        {/* Vibe Picker */}
+        <div>
+          <label className="font-label-sm text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider mb-3 block">What's your vibe?</label>
+          <div className="grid grid-cols-3 gap-2 mb-6">
+            {vibes.map(v => (
+              <button key={v.id} onClick={() => setSelectedVibe(v.id)}
+                className={`flex flex-col items-center gap-1.5 py-3 px-2 rounded-2xl border font-label-sm text-[11px] font-bold transition-all active:scale-95 ${selectedVibe === v.id ? v.active : v.color}`}>
+                <span className="text-xl">{v.emoji}</span>
+                {v.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Optional message */}
+        <div className="mb-6">
+          <label className="font-label-sm text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-wider mb-1.5 block">Add a message (optional)</label>
+          <input type="text" placeholder={`"Looking for ${selectedVibe === "food" ? "dinner plans" : selectedVibe === "chill" ? "a chill hangout" : "something fun"}..."`}
+            value={message} onChange={e => setMessage(e.target.value)}
+            className="w-full px-4 py-3 rounded-2xl bg-white border border-outline-variant/40 font-body-md text-sm text-on-background outline-none focus:border-primary transition-colors" />
+        </div>
+
+        {/* Visibility info */}
+        <div className="bg-surface-container rounded-2xl p-4 flex items-center gap-3 mb-6 border border-outline-variant/25">
+          <span className="material-symbols-outlined text-on-surface-variant/60 text-[20px]">schedule</span>
+          <p className="font-body-md text-xs text-on-surface-variant/70 leading-relaxed flex-1">
+            Your signal will be visible to Aura-matched users within <strong>2 miles</strong> for <strong>3 hours</strong>.
+          </p>
+        </div>
+
+        <button onClick={() => setPosted(true)} disabled={!selectedVibe}
+          className="w-full py-4 rounded-full bg-gradient-to-r from-primary via-tertiary to-secondary text-white font-label-md text-sm font-extrabold active:scale-[0.98] transition-all shadow-md disabled:opacity-40 flex items-center justify-center gap-2">
+          <span className="material-symbols-outlined text-[18px]" style={{fontVariationSettings:"'FILL' 1"}}>local_fire_department</span>
+          Send Signal
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function ProfileScreen({ onSettings }) {
+  return (
+    <div className="h-full overflow-y-auto bg-surface pb-28 hide-scrollbar relative">
+      {/* Ambient background blur */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-[-5%] left-[-5%] w-[220px] h-[220px] aura-gradient rounded-full blur-[50px] opacity-60"></div>
+        <div className="absolute bottom-[20%] right-[-10%] w-[240px] h-[240px] aura-gradient rounded-full blur-[60px] opacity-40"></div>
+      </div>
+
+      <div className="relative z-10 p-6">
+        {/* Settings Header */}
+        <div className="flex justify-end mb-4">
+          <button 
+            onClick={onSettings} 
+            className="w-10 h-10 rounded-full bg-white border border-outline-variant/60 flex items-center justify-center shadow-sm text-on-surface hover:bg-surface-container-low active:scale-95 transition-transform"
+          >
+            <span className="material-symbols-outlined text-[20px] text-on-surface-variant">settings</span>
+          </button>
+        </div>
+
+        {/* Profile Card */}
+        <div className="flex flex-col items-center mb-6">
+          <div className="relative mb-3">
+            <div 
+              className="w-24 h-24 rounded-full flex items-center justify-center text-4xl text-white font-extrabold shadow-md border-4 border-white"
+              style={{ background: `linear-gradient(135deg, ${C.purpleMid}, ${C.purple}, ${C.blue})` }}
+            >
+              L
+            </div>
+            <button className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-primary border-2 border-white text-surface flex items-center justify-center shadow-md active:scale-90 transition-transform">
+              <span className="material-symbols-outlined text-[14px]">edit</span>
+            </button>
+          </div>
+          <h2 className="font-display-lg text-2xl font-extrabold text-on-background tracking-tight">Likhith</h2>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary-container/60 text-on-secondary-container font-label-md text-xs font-bold mt-2 shadow-sm">
+            <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>local_fire_department</span>
+            Warm Explorer
+          </span>
+        </div>
+
+        {/* Quick Stats Bento */}
+        <div className="grid grid-cols-3 gap-3 mb-6">
+          {[
+            { label: "Squads Joined", val: "12", icon: "groups" },
+            { label: "Matches", val: "8", icon: "psychology" },
+            { label: "Success Rate", val: "92%", icon: "check_circle" }
+          ].map(s => (
+            <div key={s.label} className="bg-white rounded-2xl p-4 text-center border border-outline-variant/30 shadow-soft flex flex-col items-center justify-center">
+              <span className="material-symbols-outlined text-primary/60 text-[18px] mb-1">{s.icon}</span>
+              <div className="font-headline-md text-lg font-bold text-on-background">{s.val}</div>
+              <div className="font-label-sm text-[10px] text-on-surface-variant/70 mt-0.5 leading-none">{s.label}</div>
             </div>
           ))}
         </div>
-        <div style={{ background:C.card, borderRadius:20, padding:"16px 20px", marginBottom:20, border:`1px solid ${C.border}` }}>
-          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
-            <span style={{ fontSize:14, fontWeight:700, color:C.text }}>Your Social Pattern</span>
-            <span style={{ fontSize:14, color:C.purple }}>→</span>
+
+        {/* Social Pattern Bento Card */}
+        <div className="bg-white rounded-3xl p-5 border border-outline-variant/30 shadow-soft mb-6">
+          <div className="flex justify-between items-center mb-4">
+            <h4 className="font-label-md text-sm text-on-background font-bold flex items-center gap-1.5">
+              <span className="material-symbols-outlined text-tertiary text-[18px]">insights</span>
+              Your Social Pattern
+            </h4>
+            <span className="material-symbols-outlined text-on-surface-variant/50 text-[18px]">arrow_forward</span>
           </div>
-          <div style={{ display:"flex", gap:16, alignItems:"center" }}>
-            <svg width="76" height="76" viewBox="0 0 80 80" style={{ flexShrink:0 }}>
-              <polygon points="40,6 72,60 8,60" fill={C.purpleLight} stroke={C.purple} strokeWidth="1.5" opacity="0.9"/>
-              <polygon points="40,20 58,52 22,52" fill={C.purple} opacity="0.25"/>
-              <polygon points="40,32 52,46 28,46" fill={C.purple} opacity="0.2"/>
-              {[[40,6],[72,60],[8,60]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="4" fill={C.purple}/>)}
-            </svg>
-            <div>
-              {["Prefers small groups","Low pressure vibe","Creative environments","Explores new places"].map((t,i)=>(
-                <div key={i} style={{ display:"flex", alignItems:"center", gap:8, marginBottom:8 }}>
-                  <div style={{ width:6, height:6, borderRadius:"50%", background:C.purple, flexShrink:0 }}/>
-                  <span style={{ fontSize:12, color:C.muted, lineHeight:1.3 }}>{t}</span>
+          <div className="flex gap-5 items-center">
+            {/* Vibe SVG visualization */}
+            <div className="w-16 h-16 flex-shrink-0 relative">
+              <svg width="64" height="64" viewBox="0 0 80 80">
+                <polygon points="40,6 72,60 8,60" fill={C.purpleLight} stroke={C.purple} strokeWidth="1.5" opacity="0.9"/>
+                <polygon points="40,20 58,52 22,52" fill={C.purple} opacity="0.25"/>
+                <polygon points="40,32 52,46 28,46" fill={C.purple} opacity="0.2"/>
+                {[[40,6],[72,60],[8,60]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="4" fill={C.purple}/>)}
+              </svg>
+            </div>
+            <div className="flex-1 flex flex-col gap-2">
+              {["Prefers small groups", "Low pressure vibe", "Creative environments"].map((t, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                  <span className="font-body-md text-xs text-on-surface-variant">{t}</span>
                 </div>
               ))}
             </div>
           </div>
         </div>
-        <div style={{ marginBottom:22 }}>
-          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
-            <span style={{ fontSize:14, fontWeight:700, color:C.text }}>Saved Events</span>
-            <span style={{ fontSize:13, color:C.purple, fontWeight:600 }}>See all</span>
+
+        {/* Saved Events */}
+        <div className="mb-6">
+          <div className="flex justify-between items-center mb-3">
+            <span className="font-headline-md text-base font-bold text-on-background">Saved Events</span>
+            <span className="font-label-md text-xs text-primary font-bold hover:underline cursor-pointer">See all</span>
           </div>
-          <div style={{ display:"flex", gap:10, overflowX:"auto", paddingBottom:4, scrollbarWidth:"none" }}>
-            {events.map(e=>(
-              <div key={e.id} style={{ flexShrink:0, width:94 }}>
-                <div style={{ width:94, height:76, borderRadius:14, background:e.gradient, marginBottom:6 }}/>
-                <div style={{ fontSize:11, fontWeight:600, color:C.text, lineHeight:1.3 }}>{e.name.split(" ").slice(0,2).join(" ")}</div>
-                <div style={{ fontSize:10, color:C.muted }}>{e.time.split("·")[0].trim()}</div>
+          <div className="flex gap-3 overflow-x-auto pb-2 hide-scrollbar -mx-6 px-6">
+            {events.map(e => (
+              <div key={e.id} className="flex-shrink-0 w-24">
+                <div 
+                  className="w-24 h-[76px] rounded-2xl bg-cover bg-center mb-1.5 shadow-sm border border-outline-variant/15"
+                  style={{ backgroundImage: e.image ? `url(${e.image})` : e.gradient }}
+                />
+                <div className="font-label-md text-[11px] font-bold text-on-background truncate leading-tight">{e.name}</div>
+                <div className="font-label-sm text-[9px] text-on-surface-variant/60 mt-0.5 truncate">{e.time.split("·")[0].trim()}</div>
               </div>
             ))}
           </div>
         </div>
+
+        {/* Past Squads */}
         <div>
-          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
-            <span style={{ fontSize:14, fontWeight:700, color:C.text }}>Past Squads</span>
-            <span style={{ fontSize:13, color:C.purple, fontWeight:600 }}>See all</span>
+          <div className="flex justify-between items-center mb-3">
+            <span className="font-headline-md text-base font-bold text-on-background">Past Squads</span>
+            <span className="font-label-md text-xs text-primary font-bold hover:underline cursor-pointer">See all</span>
           </div>
-          <div style={{ display:"flex", gap:6 }}>{["Maya K","Alex R","Jordan L","Sam T","Casey M","Ria P"].map((n,i)=><Av key={i} name={n} size={42}/>)}</div>
+          <div className="flex gap-2.5">
+            {["Maya K", "Alex R", "Jordan L", "Sam T", "Casey M", "Ria P"].map((n, i) => (
+              <Av key={i} name={n} size={40} />
+            ))}
+          </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function SettingsScreen({ onBack }) {
+  const [matchIntensity, setMatchIntensity] = useState(80);
+  const [maxDistance, setMaxDistance] = useState(15);
+  const [incognito, setIncognito] = useState(false);
+  const [notifications, setNotifications] = useState(true);
+
+  return (
+    <div className="h-full overflow-y-auto bg-surface pb-12 hide-scrollbar relative">
+      <div className="p-6">
+        {/* Header */}
+        <div className="flex items-center gap-4 mb-8">
+          <button 
+            onClick={onBack} 
+            className="w-9 h-9 rounded-full bg-white border border-outline-variant/60 flex items-center justify-center shadow-sm text-on-surface hover:bg-surface-container-low active:scale-90 transition-transform"
+          >
+            <span className="material-symbols-outlined text-[20px]">arrow_back</span>
+          </button>
+          <h2 className="font-display-lg text-xl font-extrabold text-on-background tracking-tight">Settings & Privacy</h2>
+        </div>
+
+        {/* Account Settings */}
+        <div className="mb-6">
+          <h4 className="font-label-sm text-[10px] uppercase font-bold text-on-surface-variant/60 tracking-wider mb-3 px-1">
+            Account
+          </h4>
+          <div className="bg-white rounded-3xl border border-outline-variant/30 shadow-soft overflow-hidden">
+            {[
+              { icon: "person", title: "Profile Information", subtitle: "Likhith, Chill Explorer" },
+              { icon: "phone", title: "Phone Number", subtitle: "+1 (555) 019-2834" },
+              { icon: "mail", title: "Email Address", subtitle: "likhith@example.com" }
+            ].map((item, idx) => (
+              <div 
+                key={idx} 
+                className="flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors cursor-pointer border-b border-outline-variant/20 last:border-b-0"
+              >
+                <div className="flex items-center gap-3.5">
+                  <span className="material-symbols-outlined text-primary text-[20px]">{item.icon}</span>
+                  <div>
+                    <div className="font-label-md text-xs font-bold text-on-background">{item.title}</div>
+                    <div className="font-body-md text-[10px] text-on-surface-variant/70 mt-0.5">{item.subtitle}</div>
+                  </div>
+                </div>
+                <span className="material-symbols-outlined text-on-surface-variant/40 text-[18px]">chevron_right</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Preferences / AI Tuning */}
+        <div className="mb-6">
+          <h4 className="font-label-sm text-[10px] uppercase font-bold text-on-surface-variant/60 tracking-wider mb-3 px-1">
+            Match Preferences
+          </h4>
+          <div className="bg-white rounded-3xl p-5 border border-outline-variant/30 shadow-soft flex flex-col gap-6">
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <span className="font-label-md text-xs font-bold text-on-background">Min Match Score</span>
+                <span className="font-headline-md text-xs font-bold text-primary">{matchIntensity}%</span>
+              </div>
+              <input 
+                type="range" 
+                min="50" 
+                max="95" 
+                value={matchIntensity} 
+                onChange={(e) => setMatchIntensity(Number(e.target.value))}
+                className="w-full accent-primary h-1.5 bg-outline-variant/35 rounded-lg appearance-none cursor-pointer"
+              />
+            </div>
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <span className="font-label-md text-xs font-bold text-on-background">Max Distance</span>
+                <span className="font-headline-md text-xs font-bold text-primary">{maxDistance} miles</span>
+              </div>
+              <input 
+                type="range" 
+                min="1" 
+                max="50" 
+                value={maxDistance} 
+                onChange={(e) => setMaxDistance(Number(e.target.value))}
+                className="w-full accent-primary h-1.5 bg-outline-variant/35 rounded-lg appearance-none cursor-pointer"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Privacy Settings */}
+        <div className="mb-6">
+          <h4 className="font-label-sm text-[10px] uppercase font-bold text-on-surface-variant/60 tracking-wider mb-3 px-1">
+            Privacy & Safety
+          </h4>
+          <div className="bg-white rounded-3xl border border-outline-variant/30 shadow-soft overflow-hidden">
+            {/* Incognito Switch */}
+            <div className="flex items-center justify-between p-5 border-b border-outline-variant/20">
+              <div className="flex gap-3.5 items-start">
+                <span className="material-symbols-outlined text-tertiary text-[20px] mt-0.5">visibility_off</span>
+                <div>
+                  <div className="font-label-md text-xs font-bold text-on-background">Incognito Mode</div>
+                  <p className="font-body-md text-[10px] text-on-surface-variant/70 mt-0.5 leading-snug max-w-[200px]">
+                    Hide your profile from new recommendations and discovery maps.
+                  </p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setIncognito(!incognito)}
+                className={`w-11 h-6 rounded-full p-1 transition-colors duration-200 focus:outline-none flex-shrink-0 ${incognito ? "bg-primary" : "bg-outline-variant/70"}`}
+              >
+                <div className={`bg-white w-4 h-4 rounded-full shadow-sm transform transition-transform duration-200 ${incognito ? "translate-x-5" : "translate-x-0"}`} />
+              </button>
+            </div>
+
+            {/* Notification Switch */}
+            <div className="flex items-center justify-between p-5">
+              <div className="flex gap-3.5 items-start">
+                <span className="material-symbols-outlined text-secondary text-[20px] mt-0.5">notifications</span>
+                <div>
+                  <div className="font-label-md text-xs font-bold text-on-background">Push Notifications</div>
+                  <p className="font-body-md text-[10px] text-on-surface-variant/70 mt-0.5 leading-snug max-w-[200px]">
+                    Get real-time updates for squad formation, matches, and chats.
+                  </p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setNotifications(!notifications)}
+                className={`w-11 h-6 rounded-full p-1 transition-colors duration-200 focus:outline-none flex-shrink-0 ${notifications ? "bg-primary" : "bg-outline-variant/70"}`}
+              >
+                <div className={`bg-white w-4 h-4 rounded-full shadow-sm transform transition-transform duration-200 ${notifications ? "translate-x-5" : "translate-x-0"}`} />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Action Button */}
+        <button className="w-full py-4 rounded-full bg-surface text-error border border-error/30 font-label-md text-xs font-bold hover:bg-error/5 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+          <span className="material-symbols-outlined text-[18px]">logout</span>
+          Sign Out of Plot
+        </button>
       </div>
     </div>
   );
@@ -636,20 +1744,41 @@ function ProfileScreen() {
 
 function LoginScreen({ onContinue }) {
   return (
-    <div style={{ height:"100%", display:"flex", flexDirection:"column", background:C.bg, padding:"40px 24px 30px" }}>
-      <div style={{ flex:1, display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center" }}>
-        <img src="logo.png" alt="Plot Logo" style={{ width:240, objectFit:"contain", marginBottom:20 }} />
-        <div style={{ fontSize:16, color:C.muted, textAlign:"center", marginBottom:40 }}>Discover your people.</div>
+    <div className="h-full flex flex-col justify-between bg-surface p-8 relative">
+      {/* Ambient background blur inside screen */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-[-10%] left-[-10%] w-[200px] h-[200px] aura-gradient rounded-full blur-[40px] opacity-60"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[220px] h-[220px] aura-gradient rounded-full blur-[50px] opacity-40"></div>
       </div>
-      <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
-        <button onClick={onContinue} style={{ padding:"16px", borderRadius:30, background:"#1C1917", color:"white", fontWeight:700, fontSize:16, border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", gap:10 }}>
-          <span style={{fontSize:20}}></span> Continue with Apple
+
+      <div className="relative z-10 flex-1 flex flex-col justify-center items-center">
+        {/* Plot Logo */}
+        <img src="logo.png" alt="Plot" className="h-20 object-contain mb-2" onError={(e)=>{e.target.style.display='none';}} />
+        <p className="font-body-md text-body-md text-on-surface-variant text-center max-w-[240px]">
+          Discover your people. Connect in creative, low-pressure environments.
+        </p>
+      </div>
+
+      <div className="relative z-10 flex flex-col gap-4">
+        <button
+          onClick={onContinue}
+          className="w-full py-4 px-6 rounded-full bg-on-background text-surface font-label-md text-label-md flex items-center justify-center gap-3 transition-transform duration-150 active:scale-[0.98] shadow-sm hover:opacity-95"
+        >
+          <span className="text-[20px] leading-none"></span> Continue with Apple
         </button>
-        <button onClick={onContinue} style={{ padding:"16px", borderRadius:30, background:"white", color:C.text, fontWeight:700, fontSize:16, border:`1px solid ${C.border}`, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", gap:10 }}>
-          <span style={{fontSize:20, fontWeight:800, color:"#EA4335"}}>G</span> Continue with Google
+        <button
+          onClick={onContinue}
+          className="w-full py-4 px-6 rounded-full bg-white text-on-background font-label-md text-label-md flex items-center justify-center gap-3 border border-outline-variant/30 transition-transform duration-150 active:scale-[0.98] shadow-sm hover:bg-surface-container-low"
+        >
+          <span className="text-[18px] font-bold text-[#EA4335]">G</span> Continue with Google
         </button>
-        <div style={{ textAlign:"center", fontSize:14, color:C.muted, margin:"10px 0" }}>or</div>
-        <button onClick={onContinue} style={{ padding:"16px", borderRadius:30, background:`linear-gradient(135deg, ${C.purple}, ${C.coral})`, color:"white", fontWeight:800, fontSize:16, border:"none", cursor:"pointer" }}>
+        <div className="text-center font-label-sm text-label-sm text-on-surface-variant/60 my-1">
+          or
+        </div>
+        <button
+          onClick={onContinue}
+          className="w-full py-4 px-6 rounded-full bg-gradient-to-r from-primary via-tertiary to-secondary text-white font-label-md text-label-md font-extrabold transition-transform duration-150 active:scale-[0.98] shadow-soft hover:opacity-95"
+        >
           Use Phone Number
         </button>
       </div>
@@ -660,19 +1789,47 @@ function OnboardingScreen({ onFinish }) {
   const [name, setName] = useState("");
 
   return (
-    <div style={{ height:"100%", display:"flex", flexDirection:"column", background:C.bg, padding:"30px 24px" }}>
-      <div style={{ flex:1 }}>
-        <img src="logo.png" alt="Plot Logo" style={{ height:40, objectFit:"contain", marginBottom:30 }} />
+    <div className="h-full flex flex-col justify-between bg-surface p-8 relative">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-[-10%] left-[-10%] w-[180px] h-[180px] aura-gradient rounded-full blur-[40px] opacity-55"></div>
+      </div>
+
+      <div className="relative z-10 flex-1">
+        {/* Logo Header */}
+        <div className="flex items-center gap-2 mb-8 mt-2">
+          <img src="logo.png" alt="Plot" className="h-8 object-contain" onError={(e)=>{e.target.style.display='none';}} />
+        </div>
+
         <div>
-          <div style={{ fontSize:26, fontWeight:800, color:C.text, marginBottom:10 }}>What's your name?</div>
-          <div style={{ fontSize:15, color:C.muted, marginBottom:30 }}>This is how you'll appear to others.</div>
-          <div style={{ display:"flex", justifyContent:"center", marginBottom:30 }}>
-            <div style={{ width:100, height:100, borderRadius:"50%", background:C.purpleLight, border:`2px dashed ${C.purple}`, display:"flex", alignItems:"center", justifyContent:"center", color:C.purple, fontSize:30, cursor:"pointer" }}>+📷</div>
+          <h3 className="font-headline-lg-mobile text-headline-lg-mobile text-on-background mb-2">
+            What's your name?
+          </h3>
+          <p className="font-body-md text-sm text-on-surface-variant mb-8">
+            This is how you'll appear to others when checking in.
+          </p>
+
+          <div className="flex justify-center mb-8">
+            <div className="w-24 h-24 rounded-full bg-primary-container/40 border-2 border-dashed border-primary/40 flex flex-col items-center justify-center text-primary cursor-pointer hover:bg-primary-container/60 transition-colors shadow-sm relative group overflow-hidden">
+              <span className="material-symbols-outlined text-[32px]">add_a_photo</span>
+              <span className="font-label-sm text-[10px] mt-1">Add Photo</span>
+            </div>
           </div>
-          <input type="text" placeholder="First Name" value={name} onChange={e=>setName(e.target.value)} style={{ width:"100%", padding:"18px 20px", borderRadius:16, border:`1px solid ${C.border}`, fontSize:18, fontWeight:600, outline:"none", background:"white" }} />
+
+          <input
+            type="text"
+            placeholder="First Name"
+            value={name}
+            onChange={e => setName(e.target.value)}
+            className="w-full px-5 py-4 rounded-2xl border border-outline-variant/60 text-lg font-semibold bg-white text-on-background placeholder:text-on-surface-variant/40 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm"
+          />
         </div>
       </div>
-      <button onClick={() => onFinish(name || "Explorer")} style={{ padding:"18px", borderRadius:30, background:C.text, color:"white", fontWeight:800, fontSize:17, border:"none", cursor:"pointer", opacity:!name?0.5:1 }} disabled={!name}>
+
+      <button
+        onClick={() => onFinish(name || "Explorer")}
+        className="relative z-10 w-full py-4 rounded-full bg-on-background text-surface font-label-md text-label-md font-extrabold transition-transform duration-150 active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none"
+        disabled={!name.trim()}
+      >
         Next
       </button>
     </div>
@@ -769,7 +1926,7 @@ function AuraOnboardingScreen({ onComplete }) {
 
   const q       = ONBOARDING_QUESTIONS[step];
   const total   = ONBOARDING_QUESTIONS.length;
-  const pct     = ((step) / total) * 100;
+  const pct     = (step / total) * 100;
 
   useEffect(() => {
     if (loading) {
@@ -792,90 +1949,79 @@ function AuraOnboardingScreen({ onComplete }) {
 
   if (loading) {
     return (
-      <div style={{ height:"100%", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center", background:C.bg, padding:30 }}>
-        <div style={{ width:160, height:160, borderRadius:"50%", background:`radial-gradient(circle at 38% 33%, #F0EEFF 0%, ${C.purple} 45%, ${C.blue} 100%)`, boxShadow:`0 20px 60px rgba(123,92,246,0.45)`, animation:"spin 2s linear infinite", marginBottom:40 }}/>
-        <div style={{ fontSize:22, fontWeight:800, color:C.text }}>Calibrating Aura...</div>
-        <div style={{ fontSize:15, color:C.muted, marginTop:10 }}>Finding your perfect matches</div>
-        <style>{`@keyframes spin { 100% { transform: rotate(360deg); } }`}</style>
+      <div className="h-full flex flex-col justify-center items-center bg-surface p-8 relative">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+          <div className="absolute top-[20%] left-[10%] w-[250px] h-[250px] aura-gradient rounded-full blur-[60px] opacity-75"></div>
+        </div>
+        <div className="relative z-10 flex flex-col items-center">
+          {/* Calibrating Orb */}
+          <div 
+            className="w-40 h-40 rounded-full mb-10 shadow-glow animate-spin" 
+            style={{ 
+              background: `radial-gradient(circle at 38% 33%, #F0EEFF 0%, ${C.purple} 45%, ${C.blue} 100%)`, 
+              boxShadow: `0 20px 60px rgba(123,92,246,0.35)`,
+              animationDuration: '3s'
+            }}
+          />
+          <h2 className="font-display-lg text-2xl text-on-background font-extrabold tracking-tight text-center">
+            Calibrating Aura...
+          </h2>
+          <p className="font-body-md text-sm text-on-surface-variant/80 mt-2 text-center">
+            Analyzing vibes & matching with squads
+          </p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div style={{
-      height:"100%", overflowY:"auto",
-      background:C.bg, display:"flex", flexDirection:"column",
-    }}>
+    <div className="h-full flex flex-col bg-surface relative">
       {/* Progress bar */}
-      <div style={{ height:3, background:C.border, flexShrink:0 }}>
-        <div style={{
-          height:"100%", background:C.coral,
-          width:`${pct}%`, transition:"width 0.35s ease",
-        }}/>
+      <div className="h-1 bg-outline-variant/20 flex-shrink-0 w-full">
+        <div 
+          className="h-full bg-gradient-to-r from-primary via-tertiary to-secondary transition-all duration-300"
+          style={{ width: `${pct}%` }}
+        />
       </div>
 
-      <div style={{ padding:"20px 22px", flex:1 }}>
-        {/* Step label */}
-        <div style={{
-          fontSize:10, fontWeight:700, color:C.coral,
-          letterSpacing:3, textTransform:"uppercase", marginBottom:6,
-        }}>
-          {q.label}
-        </div>
+      <div className="p-6 flex-1 flex flex-col justify-between relative z-10">
+        <div>
+          {/* Step label */}
+          <div className="font-label-sm text-[10px] uppercase font-bold text-tertiary tracking-widest mb-2 mt-1">
+            {q.label}
+          </div>
 
-        {/* Question */}
-        <div style={{
-          fontSize:20, fontWeight:800, color:C.text,
-          lineHeight:1.25, marginBottom:28, letterSpacing:-0.4,
-        }}>
-          {q.question}
-        </div>
+          {/* Question */}
+          <h3 className="font-headline-lg-mobile text-xl text-on-background font-extrabold leading-tight mb-8">
+            {q.question}
+          </h3>
 
-        {/* Option cards */}
-        <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
-          {q.options.map(opt => (
-            <button
-              key={String(opt.value)}
-              onClick={() => pick(opt.value)}
-              style={{
-                display:"flex", alignItems:"center", gap:16,
-                background:C.card, border:`1.5px solid ${C.border}`,
-                borderRadius:18, padding:"16px 18px",
-                cursor:"pointer", textAlign:"left",
-                boxShadow:"0 2px 8px rgba(0,0,0,0.05)",
-                transition:"border-color 0.15s, box-shadow 0.15s",
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.borderColor = C.coral;
-                e.currentTarget.style.boxShadow = `0 3px 14px rgba(255,104,69,0.18)`;
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.borderColor = C.border;
-                e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.05)";
-              }}
-            >
-              <span style={{
-                fontSize:26, width:38, height:38,
-                display:"flex", alignItems:"center", justifyContent:"center",
-                background:"#F5F2EC", borderRadius:12, flexShrink:0,
-              }}>
-                {opt.emoji}
-              </span>
-              <span style={{
-                fontSize:15, fontWeight:600, color:C.text, lineHeight:1.3,
-              }}>
-                {opt.label}
-              </span>
-            </button>
-          ))}
+          {/* Option cards */}
+          <div className="flex flex-col gap-3">
+            {q.options.map(opt => (
+              <button
+                key={String(opt.value)}
+                onClick={() => pick(opt.value)}
+                className="w-full flex items-center gap-4 bg-white border border-outline-variant/60 rounded-2xl p-4 text-left shadow-sm hover:border-tertiary hover:shadow-soft active:scale-[0.99] transition-all duration-150 group"
+              >
+                {/* Emoji box */}
+                <span 
+                  style={{ fontSize: '26px' }}
+                  className="w-11 h-11 flex items-center justify-center bg-surface-container-low rounded-xl flex-shrink-0 group-hover:bg-primary-container/40 transition-colors"
+                >
+                  {opt.emoji}
+                </span>
+                <span className="font-label-md text-sm text-on-background leading-snug">
+                  {opt.label}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Step counter */}
-        <div style={{
-          textAlign:"center", marginTop:24,
-          fontSize:11, color:C.muted,
-        }}>
-          {step + 1} of {total}
+        <div className="text-center font-label-sm text-xs text-on-surface-variant/60 py-2">
+          Question {step + 1} of {total}
         </div>
       </div>
     </div>
@@ -887,6 +2033,7 @@ function PlotApp() {
   const [userName, setUserName] = useState("");
   const [screen, setScreen] = useState("discover");
   const [activeTab, setActiveTab] = useState("discover");
+  const [addPopoverOpen, setAddPopoverOpen] = useState(false);
   const [selEvent, setSelEvent] = useState(null);
   const [energy, setEnergy] = useState(45);
   const [intent, setIntent] = useState("Explore");
@@ -942,7 +2089,7 @@ function PlotApp() {
 
   const tabs = [
     {id:"discover",label:"Discover"},{id:"map",label:"Map"},
-    {id:"aura",label:"Aura"},{id:"pulse",label:"Pulse"},{id:"you",label:"You"},
+    {id:"add",label:"Add"},{id:"aura",label:"Aura"},{id:"you",label:"You"},
   ];
   const tabScreenMap = {you:"profile"};
 
@@ -969,20 +2116,123 @@ function PlotApp() {
               : <>
                   {screen === "discover" && <DiscoverScreen onEvent={openEvent} userName={userName} events={scoredEvents} userProfile={userProfile} />}
                   {screen === "map" && <MapScreen/>}
-                  {screen === "aura" && <AuraScreen energy={energy} setEnergy={setEnergy} intent={intent} setIntent={setIntent} mode={socialMode} setMode={setSocialMode} onFind={findPeople} loading={aiLoading} results={aiResults}/>}
+                  {screen === "aura" && <AuraChatScreen userProfile={userProfile} />}
+                  {screen === "vibe" && <AuraScreen energy={energy} setEnergy={setEnergy} intent={intent} setIntent={setIntent} mode={socialMode} setMode={setSocialMode} onFind={findPeople} loading={aiLoading} results={aiResults}/>}
                   {screen === "pulse" && <PulseScreen/>}
-                  {screen === "profile" && <ProfileScreen/>}
+                  {screen === "hostEvent" && <HostEventScreen onBack={() => setScreen("discover")} />}
+                  {screen === "postSignal" && <PostSignalScreen onBack={() => setScreen("discover")} />}
+                  {screen === "profile" && <ProfileScreen onSettings={() => setScreen("settings")} />}
+                  {screen === "settings" && <SettingsScreen onBack={() => setScreen("profile")} />}
                   {screen === "event" && selEvent && <EventDetail event={selEvent} onBack={()=>setScreen("discover")} reasons={getMatchReasons(userProfile, selEvent)}/>}
+                  
+                  {/* Interactive Add Popover */}
+                  {addPopoverOpen && (
+                    <div 
+                      className="absolute inset-0 bg-black/60 backdrop-blur-[2px] z-50 flex flex-col justify-end transition-all duration-300"
+                      onClick={() => setAddPopoverOpen(false)}
+                    >
+                      <div 
+                        className="bg-white rounded-t-[32px] p-6 pb-8 shadow-2xl flex flex-col gap-4 transform translate-y-0 transition-all duration-300"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {/* Pull Bar */}
+                        <div className="w-12 h-1 bg-outline-variant/60 rounded-full mx-auto mb-2" />
+                        
+                        <h3 className="font-display-lg text-lg font-extrabold text-on-background mb-1">Create or Tune</h3>
+                        
+                        {/* Option: Talk to Aura AI */}
+                        <button 
+                          onClick={() => {
+                            setAddPopoverOpen(false);
+                            setActiveTab("aura");
+                            setScreen("aura");
+                          }}
+                          className="flex items-center gap-4 p-4 rounded-3xl bg-gradient-to-r from-primary/10 via-tertiary/10 to-secondary/10 border border-primary/20 text-left hover:opacity-95 transition-all active:scale-[0.98]"
+                        >
+                          <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-primary via-tertiary to-secondary flex items-center justify-center text-white flex-shrink-0 shadow-md overflow-hidden">
+                            <img src="logo.png" alt="" className="w-8 h-8 object-contain" onError={(e)=>{e.target.style.display='none';e.target.parentElement.innerHTML='<span class="material-symbols-outlined text-white text-[22px]" style="font-variation-settings:\'FILL\' 1">psychology</span>';}} />
+                          </div>
+                          <div>
+                            <div className="font-label-md text-sm font-extrabold text-on-background">Talk to Aura AI</div>
+                            <p className="font-body-md text-xs text-on-surface-variant/80 mt-0.5 leading-tight">
+                              Chat with your AI social compass to tune your vibe.
+                            </p>
+                          </div>
+                        </button>
+
+                        {/* Option: Host Event */}
+                        <button 
+                          onClick={() => {
+                            setAddPopoverOpen(false);
+                            setScreen("hostEvent");
+                          }}
+                          className="flex items-center gap-4 p-4 rounded-3xl bg-surface border border-outline-variant/20 text-left hover:bg-surface-container-low transition-all active:scale-[0.98]"
+                        >
+                          <div className="w-11 h-11 rounded-2xl bg-primary-container flex items-center justify-center text-primary flex-shrink-0 border border-primary/10 shadow-sm">
+                            <span className="material-symbols-outlined text-[22px]">
+                              groups
+                            </span>
+                          </div>
+                          <div>
+                            <div className="font-label-md text-sm font-bold text-on-background">Host Event</div>
+                            <p className="font-body-md text-xs text-on-surface-variant/70 mt-0.5 leading-tight">
+                              Create a new event, invite friends, and form a squad.
+                            </p>
+                          </div>
+                        </button>
+
+                        {/* Option: Post a Signal */}
+                        <button 
+                          onClick={() => {
+                            setAddPopoverOpen(false);
+                            setScreen("postSignal");
+                          }}
+                          className="flex items-center gap-4 p-4 rounded-3xl bg-surface border border-outline-variant/20 text-left hover:bg-surface-container-low transition-all active:scale-[0.98]"
+                        >
+                          <div className="w-11 h-11 rounded-2xl bg-secondary-container flex items-center justify-center text-secondary flex-shrink-0 border border-secondary/10 shadow-sm">
+                            <span className="material-symbols-outlined text-[22px]">
+                              local_fire_department
+                            </span>
+                          </div>
+                          <div>
+                            <div className="font-label-md text-sm font-bold text-on-background">Post a Signal</div>
+                            <p className="font-body-md text-xs text-on-surface-variant/70 mt-0.5 leading-tight">
+                              Let nearby matches know what you're up to right now.
+                            </p>
+                          </div>
+                        </button>
+
+                        {/* Cancel Button */}
+                        <button 
+                          onClick={() => setAddPopoverOpen(false)}
+                          className="w-full py-3.5 rounded-full bg-surface-container border border-outline-variant/30 text-on-surface font-label-md text-sm font-bold active:scale-[0.98] transition-all"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </>
           )}
         </div>
-        {authState === "authenticated" && onboardingDone && screen !== "event" && (
+        {authState === "authenticated" && onboardingDone && screen !== "event" && screen !== "settings" && screen !== "hostEvent" && screen !== "postSignal" && (
           <div style={{ background:C.navBg, borderTop:`1px solid ${C.border}`, padding:"8px 0 22px", display:"flex", justifyContent:"space-around", flexShrink:0 }}>
             {tabs.map(tab=>{
               const screenId = tabScreenMap[tab.id]||tab.id;
               const isActive = activeTab===tab.id;
               return (
-                <button key={tab.id} onClick={()=>go(screenId)||setActiveTab(tab.id)||(()=>{setActiveTab(tab.id);setScreen(screenId);})()} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", gap:3, padding:"4px 10px", color:isActive?C.purple:C.muted }} onClick={()=>{setActiveTab(tab.id);setScreen(screenId);}}>
+                <button 
+                  key={tab.id} 
+                  onClick={() => {
+                    if (tab.id === "add") {
+                      setAddPopoverOpen(true);
+                    } else {
+                      setActiveTab(tab.id);
+                      setScreen(screenId);
+                    }
+                  }} 
+                  style={{ background:"none", border:"none", cursor:"pointer", display:"flex", flexDirection:"column", alignItems:"center", gap:3, padding:"4px 10px", color:isActive?C.purple:C.muted }}
+                >
                   <NavIcon type={tab.id==="you"?"you":tab.id} active={isActive}/>
                   <span style={{ fontSize:10, fontWeight:isActive?700:400 }}>{tab.label}</span>
                 </button>
