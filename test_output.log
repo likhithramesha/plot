@@ -1,0 +1,127 @@
+Launching Chrome...
+Navigating to http://localhost:8000/index.html ...
+BROWSER CONSOLE: cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation
+BROWSER CONSOLE: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+BROWSER CONSOLE: You are using the in-browser Babel transformer. Be sure to precompile your scripts for production - https://babeljs.io/docs/setup/
+BROWSER CONSOLE: Failed to load resource: the server responded with a status of 404 (File not found)
+Taking screenshot of login screen...
+Clicking 'Use Phone Number'...
+Taking screenshot of name screen...
+Entering name 'Test User'...
+Clicking 'Next'...
+Answering question 1...
+Answering question 2...
+Answering question 3...
+Answering question 4...
+Answering question 5...
+Answering question 6...
+Answering question 7...
+Answering question 8...
+Taking screenshot of calibrating screen (now after question 8)...
+Waiting 3.5 seconds for calibration timer to complete...
+Taking screenshot of main page (should show top picks matching answers)...
+Checking page contents...
+Page text contains 'Top Picks For You': true
+Page text contains 'Test User's Aura': true
+Top pick match text found on main screen: prototype
+9:41
+GOOD AFTERNOON,
+Test User
+TU
+cloud
+️ Chill Explorer
+For You
+Today
+Creative
+Social
+Food
+Music
+tune
+Top Picks For You
+See all
+psychology
+85% Match
+bookmark
+Rooftop Brunch & Beats
+calendar_today
+Today · 11:00 AM
+·
+location_on
+0.4 mi
+AU
+BU
+CU
+3 friends going
+4 going
+Brunch
+Music
+Great crowd
+psychology
+83% Match
+bookmark
+Garden Dinner Party
+calendar_today
+Today · 7:00 PM
+·
+location_on
+0.5 mi
+AU
+BU
+CU
+2 friends going
+5 going
+Dinner
+Social
+Outdoor
+psychology
+79% Match
+bookmark
+Wine & Paint Evening
+calendar_today
+Tonight · 8:00 PM
+·
+location_on
+0.6 mi
+AU
+BU
+CU
+1 friends going
+8 going
+Art
+Wine
+Creative
+psychology
+72% Match
+bookmark
+Sunset Beach Jam
+calendar_today
+Today · 6:30 PM
+·
+location_on
+1.2 mi
+AU
+BU
+CU
+3 friends going
+6 going
+Live Music
+Beach
+Chill Vibes
+explore
+SUGGESTED SPOT
+SPONSORED
+Sunset Picnic Series
+
+Trending with people of similar Aura profiles. 3 checked in tonight.
+
+JD
+AM
+Join the waitlist
+arrow_forward
+Discover
+Map
+Add
+Pulse
+You
+Tap Aura to get AI-powered event recommendations
+Test finished.
